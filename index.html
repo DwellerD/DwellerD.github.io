@@ -4,750 +4,517 @@
     <meta charset="UTF-8">
     <title>Dallin Weller | QA Engineer Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dallin Weller is a QA Engineer focused on test automation with Playwright, JavaScript/TypeScript, and SQL-driven validation.">
-    <meta name="theme-color" content="#1f2937">
+    <meta name="description" content="Portfolio site for Dallin Weller, QA Engineer focused on test automation, Playwright, and software quality.">
+    <meta name="theme-color" content="#2f2e35">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jura:wght@500;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #f2efe8;
-            --panel: #fffdf8;
-            --panel-2: #eaf3ed;
-            --ink: #1d1f24;
-            --muted: #525966;
-            --accent: #0d7a5f;
-            --accent-2: #1f2937;
-            --line: #d9d2c5;
-            --shadow: 0 14px 28px rgba(21, 31, 38, 0.08);
+            --page-bg: #b7a0b3;
+            --frame-bg: #f5f5f5;
+            --hero-bg: #303138;
+            --hero-soft: #3f4048;
+            --text-main: #141518;
+            --text-soft: #5f6570;
+            --text-light: #dde1ea;
+            --line: #dedee2;
+            --accent: #11151f;
+            --accent-soft: #50535f;
+            --panel: #ffffff;
+            --shadow: 0 24px 40px rgba(20, 22, 32, 0.16);
         }
 
         * {
             box-sizing: border-box;
         }
 
-        body {
-            margin: 0;
-            font-family: "Space Grotesk", "Segoe UI", sans-serif;
-            color: var(--ink);
-            background:
-                radial-gradient(circle at 10% 10%, #d7eadf 0%, rgba(215, 234, 223, 0) 40%),
-                radial-gradient(circle at 90% 0%, #f3d8c3 0%, rgba(243, 216, 195, 0) 35%),
-                var(--bg);
-            line-height: 1.6;
+        html {
+            scroll-behavior: smooth;
         }
 
-        .container {
-            width: min(1100px, 92vw);
-            margin: 0 auto;
-            padding: 2rem 0 4rem;
+        body {
+            margin: 0;
+            font-family: "Manrope", "Segoe UI", sans-serif;
+            background: radial-gradient(circle at 25% 15%, #c3afc0, #ab93a7 70%);
+            color: var(--text-main);
+            line-height: 1.55;
+        }
+
+        .site-frame {
+            width: min(1120px, 94vw);
+            margin: 2rem auto;
+            background: var(--frame-bg);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            box-shadow: var(--shadow);
+            overflow: hidden;
         }
 
         .hero {
-            background: linear-gradient(145deg, #fffefb, #edf5f0);
-            border: 1px solid var(--line);
-            border-radius: 20px;
-            padding: 2.25rem;
-            box-shadow: var(--shadow);
-            animation: rise 700ms ease-out;
+            position: relative;
+            padding: 1.1rem 2.4rem 2.1rem;
+            color: var(--text-light);
+            background:
+                linear-gradient(rgba(30, 31, 38, 0.68), rgba(30, 31, 38, 0.8)),
+                radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.08), transparent 45%),
+                linear-gradient(120deg, var(--hero-bg), var(--hero-soft));
         }
 
-        .eyebrow {
-            font-family: "IBM Plex Mono", monospace;
-            color: var(--accent-2);
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
-            font-size: 0.84rem;
-            margin: 0;
-        }
-
-        h1 {
-            margin: 0.4rem 0;
-            font-size: clamp(2rem, 6vw, 3.5rem);
-            line-height: 1.04;
-        }
-
-        .tagline {
-            font-size: 1.05rem;
-            color: var(--muted);
-            margin: 0;
-        }
-
-        .hero-buttons {
+        .hero-nav {
             display: flex;
+            gap: 1.4rem;
             flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-top: 1.4rem;
+            font-size: 0.72rem;
+            letter-spacing: 0.11em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .hero-nav a {
+            color: #f0f2f7;
+            text-decoration: none;
+            opacity: 0.85;
+            transition: opacity 180ms ease;
+        }
+
+        .hero-nav a:hover {
+            opacity: 1;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 170px 1fr;
+            gap: 1.8rem;
+            align-items: start;
+        }
+
+        .photo-slot {
+            width: 170px;
+            height: 190px;
+            margin-top: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.32);
+            background:
+                linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(10, 12, 20, 0.45)),
+                repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.08) 0 10px, rgba(255, 255, 255, 0.02) 10px 20px);
+            display: grid;
+            place-items: center;
+            font-size: 0.77rem;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            color: #eef2fb;
+            text-align: center;
+            padding: 0.75rem;
+        }
+
+        .identity h1 {
+            margin: 0;
+            font-family: "Jura", "Manrope", sans-serif;
+            font-size: clamp(2rem, 6.2vw, 2.8rem);
+            line-height: 1.04;
+            color: #ffffff;
+        }
+
+        .identity .role {
+            margin: 0.2rem 0 1rem;
+            font-size: 0.9rem;
+            text-transform: lowercase;
+            letter-spacing: 0.06em;
+            color: #cdd4e3;
+        }
+
+        .meta-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 0.4rem;
+            max-width: 680px;
+        }
+
+        .meta-list li {
+            display: grid;
+            grid-template-columns: 95px 1fr;
+            gap: 0.9rem;
+            font-size: 0.84rem;
+            color: #f0f4ff;
+        }
+
+        .meta-key {
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.72rem;
+        }
+
+        .meta-value a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .meta-value a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            background: var(--panel);
+            padding: 2.7rem 2.4rem 2.3rem;
+        }
+
+        .intro {
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.7rem;
+        }
+
+        .intro h2 {
+            margin: 0;
+            font-family: "Jura", sans-serif;
+            font-size: 2.1rem;
+            letter-spacing: 0.02em;
+        }
+
+        .intro p {
+            max-width: 880px;
+            color: var(--text-soft);
+            margin: 0.55rem 0 0;
+        }
+
+        .btn-row {
+            margin-top: 1rem;
+            display: flex;
+            gap: 0.65rem;
+            flex-wrap: wrap;
         }
 
         .btn {
             display: inline-block;
-            text-decoration: none;
             border-radius: 999px;
-            padding: 0.68rem 1.08rem;
-            border: 1px solid transparent;
-            font-weight: 600;
-            transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+            padding: 0.52rem 0.92rem;
+            text-decoration: none;
+            border: 1px solid var(--accent);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
         }
 
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(31, 41, 55, 0.12);
-        }
-
-        .btn-primary {
+        .btn-dark {
             background: var(--accent);
             color: #ffffff;
         }
 
-        .btn-secondary {
-            background: #ffffff;
-            color: var(--accent-2);
-            border-color: var(--line);
+        .btn-ghost {
+            color: var(--accent);
         }
 
-        section {
-            margin-top: 1.2rem;
-            background: var(--panel);
-            border: 1px solid var(--line);
-            border-radius: 18px;
-            padding: 1.6rem;
-            box-shadow: var(--shadow);
-            animation: rise 800ms ease both;
-        }
-
-        h2 {
-            margin-top: 0;
-            font-size: clamp(1.35rem, 4vw, 2rem);
-        }
-
-        .about-grid,
-        .skills-grid,
-        .exp-grid,
-        .contact-grid {
+        .section-grid {
             display: grid;
             gap: 1rem;
             grid-template-columns: repeat(12, 1fr);
         }
 
-        .card {
+        .panel {
+            grid-column: span 6;
             border: 1px solid var(--line);
-            border-radius: 14px;
+            background: #fcfcfd;
             padding: 1rem;
-            background: #fff;
         }
 
-        .story {
-            grid-column: span 12;
-            background: var(--panel-2);
-        }
-
-        .skills-group {
-            grid-column: span 6;
-        }
-
-        .skills-group h3,
-        .project-card h3,
-        .job h3 {
+        .panel h3 {
             margin-top: 0;
+            font-family: "Jura", sans-serif;
+            font-size: 1.3rem;
         }
 
-        ul {
-            margin: 0.2rem 0 0;
-            padding-left: 1.2rem;
+        .panel ul {
+            margin: 0.4rem 0 0;
+            padding-left: 1.1rem;
         }
 
-        .projects {
-            padding: 2rem;
+        .panel p {
+            margin: 0.4rem 0 0;
+            color: var(--text-soft);
         }
 
-        .projects-intro {
-            color: var(--muted);
-            margin-top: -0.2rem;
+        .panel.wide {
+            grid-column: span 12;
         }
 
-        .project-grid {
+        .projects-grid {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
             gap: 1rem;
-            margin-top: 1rem;
+            grid-template-columns: repeat(12, 1fr);
+            margin-top: 0.9rem;
         }
 
-        .project-card {
+        .project {
             grid-column: span 6;
             border: 1px solid var(--line);
-            border-radius: 16px;
-            overflow: hidden;
-            background: #fff;
+            background: #ffffff;
         }
 
         .project-shot {
-            width: 100%;
-            min-height: 160px;
-            background:
-                linear-gradient(120deg, rgba(13, 122, 95, 0.09), rgba(31, 41, 55, 0.14)),
-                repeating-linear-gradient(45deg, #f7f7f7 0 10px, #eef0f1 10px 20px);
-            border-bottom: 1px solid var(--line);
+            min-height: 130px;
             display: grid;
             place-items: center;
-            font-family: "IBM Plex Mono", monospace;
-            color: #3b4250;
-            font-size: 0.9rem;
             text-align: center;
-            padding: 1rem;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #2c3039;
+            border-bottom: 1px solid var(--line);
+            background: linear-gradient(120deg, #f4f4f7, #e7e8ed);
         }
 
-        .project-content {
-            padding: 1rem;
+        .project-body {
+            padding: 0.95rem;
         }
 
         .stack {
+            margin: 0.6rem 0;
             display: flex;
             flex-wrap: wrap;
-            gap: 0.45rem;
-            margin: 0.6rem 0 0.8rem;
+            gap: 0.4rem;
         }
 
         .stack span {
-            font-size: 0.8rem;
-            background: #eef4ff;
-            border: 1px solid #d4deef;
-            color: #273244;
+            border: 1px solid #ccd1da;
             border-radius: 999px;
-            padding: 0.22rem 0.55rem;
+            padding: 0.2rem 0.55rem;
+            font-size: 0.74rem;
+            background: #f4f7fb;
         }
 
         .project-links {
             display: flex;
-            flex-wrap: wrap;
             gap: 0.55rem;
+            flex-wrap: wrap;
+            font-size: 0.82rem;
         }
 
         .project-links a {
+            color: #1a2230;
             text-decoration: none;
-            color: var(--accent-2);
-            border: 1px solid var(--line);
+            border: 1px solid #d0d5de;
+            padding: 0.22rem 0.6rem;
             border-radius: 999px;
-            padding: 0.3rem 0.7rem;
-            font-size: 0.86rem;
         }
 
-        .job {
-            grid-column: span 6;
-        }
-
-        .resume {
-            text-align: center;
-            background: linear-gradient(145deg, #1f2937, #334155);
-            color: #f8fafc;
-        }
-
-        .resume p {
-            color: #dbe4ef;
-        }
-
-        .resume .btn {
-            margin-top: 0.4rem;
-        }
-
-        .contact-item {
-            grid-column: span 4;
-            text-align: center;
-        }
-
-        .arcade {
-            background: linear-gradient(165deg, #f4fbf6, #fbfaf5);
-        }
-
-        .arcade p {
-            color: var(--muted);
-        }
-
-        .dino-wrap {
-            margin-top: 0.9rem;
-            border: 1px solid var(--line);
-            border-radius: 14px;
-            background: #ffffff;
-            padding: 0.8rem;
-        }
-
-        #dino-canvas {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            border: 1px solid #d4d8df;
-            display: block;
-            background: linear-gradient(180deg, #ffffff, #f6f8fb);
-            touch-action: manipulation;
-        }
-
-        .dino-hud {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 0.8rem;
-            margin-top: 0.65rem;
-            flex-wrap: wrap;
-            font-family: "IBM Plex Mono", monospace;
-            font-size: 0.9rem;
-        }
-
-        .dino-hud-values {
-            display: flex;
-            gap: 0.8rem;
-        }
-
-        .contact-item a {
-            color: var(--accent-2);
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .contact-item a:hover,
         .project-links a:hover {
             text-decoration: underline;
         }
 
-        @keyframes rise {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .footer-contact {
+            margin-top: 1.6rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--line);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.9rem;
         }
 
-        @media (max-width: 600px) {
-            .container {
-                width: min(1100px, 95vw);
-                padding: 1.2rem 0 3rem;
+        .footer-contact a {
+            color: #131722;
+            text-decoration: none;
+        }
+
+        .footer-contact a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 920px) {
+            .hero {
+                padding: 1rem 1.2rem 1.5rem;
             }
 
-            .hero,
-            section,
-            .projects {
-                padding: 1.1rem;
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
             }
 
-            .skills-group,
-            .project-card,
-            .job,
-            .contact-item {
+            .photo-slot {
+                width: 100%;
+                max-width: 280px;
+                height: 200px;
+                margin-top: 0;
+            }
+
+            .content {
+                padding: 1.3rem 1.2rem 1.5rem;
+            }
+
+            .panel,
+            .project,
+            .panel.wide {
                 grid-column: span 12;
             }
 
-            .dino-hud {
-                align-items: flex-start;
+            .meta-list li {
+                grid-template-columns: 80px 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <main class="container">
+    <main class="site-frame">
         <header class="hero" id="home">
-            <p class="eyebrow">Home</p>
-            <h1>Dallin Weller</h1>
-            <p class="tagline"><strong>QA Engineer | Test Automation | Playwright | SQL</strong></p>
-            <p>I build reliable, testable software experiences with a quality-first mindset. My focus is creating automation frameworks, improving test coverage, and catching defects early with clear reporting. I enjoy turning complex workflows into repeatable, maintainable QA processes.</p>
-            <div class="hero-buttons">
-                <a class="btn btn-primary" href="#featured-projects">View Projects</a>
-                <a class="btn btn-secondary" href="#resume">Resume</a>
-                <a class="btn btn-secondary" href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
-                <a class="btn btn-secondary" href="https://www.linkedin.com/in/dallin-weller-a487032a7" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <nav class="hero-nav" aria-label="Main navigation">
+                <a href="#home">Hello_</a>
+                <a href="#skills">Skills</a>
+                <a href="#resume">Resume</a>
+                <a href="#projects">Portfolio</a>
+                <a href="#experience">Experience</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="hero-grid">
+                <div class="photo-slot">
+                    Your photo goes here<br>
+                    4:5 portrait recommended
+                </div>
+
+                <div class="identity">
+                    <h1>Dallin Weller_</h1>
+                    <p class="role">qa engineer, automation tester</p>
+                    <ul class="meta-list">
+                        <li>
+                            <span class="meta-key">Focus</span>
+                            <span class="meta-value">QA Engineer | Test Automation | Playwright | SQL</span>
+                        </li>
+                        <li>
+                            <span class="meta-key">Phone</span>
+                            <span class="meta-value"><a href="tel:+18013722325">(801) 372-2325</a></span>
+                        </li>
+                        <li>
+                            <span class="meta-key">Email</span>
+                            <span class="meta-value"><a href="mailto:weller.dallin@gmail.com">weller.dallin@gmail.com</a></span>
+                        </li>
+                        <li>
+                            <span class="meta-key">Location</span>
+                            <span class="meta-value">Utah, United States</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </header>
 
-        <section id="about">
-            <h2>About Me</h2>
-            <div class="about-grid">
-                <article class="card story">
-                    <p>I started in IT support and asset coordination, where I learned to investigate issues, document systems, and keep operations reliable at scale. Through Epic TDR testing work, I gained hands-on experience validating workflows, finding edge cases, and communicating defects clearly to stakeholders. That path naturally led me into Software QA, where I now focus on automation and quality engineering to make releases faster, safer, and more predictable.</p>
-                </article>
+        <section class="content">
+            <div class="intro">
+                <h2>Hi_</h2>
+                <p>I build reliable software quality systems from test planning through automation execution. My approach combines practical QA workflow experience with modern tooling so teams ship faster with fewer production bugs. I am focused on maintainable test architecture, clear defect communication, and measurable quality outcomes.</p>
+                <div class="btn-row" id="resume">
+                    <a class="btn btn-dark" href="#" aria-label="Add your resume file URL here">Download CV</a>
+                    <a class="btn btn-ghost" href="#projects">View Projects</a>
+                </div>
             </div>
-        </section>
 
-        <section id="skills">
-            <h2>Skills</h2>
-            <div class="skills-grid">
-                <article class="card skills-group">
-                    <h3>Languages</h3>
+            <div class="section-grid">
+                <article class="panel wide">
+                    <h3>About Me</h3>
+                    <p>I started in IT support and asset coordination, where I learned system reliability, organization, and process discipline. My Epic TDR testing experience strengthened my ability to validate workflows, execute functional testing, and document defects with precision. Today I am transitioning deeper into Software QA with a strong interest in automation and quality engineering.</p>
+                </article>
+
+                <article class="panel" id="skills">
+                    <h3>Skills</h3>
                     <ul>
-                        <li>JavaScript</li>
-                        <li>TypeScript</li>
+                        <li>JavaScript, TypeScript, SQL</li>
+                        <li>Playwright, WebdriverIO</li>
+                        <li>Functional, API, Regression, UAT</li>
+                        <li>Test planning and quality reporting</li>
+                    </ul>
+                </article>
+
+                <article class="panel" id="experience">
+                    <h3>Experience</h3>
+                    <ul>
+                        <li>IT Asset Coordinator: asset management and process improvement</li>
+                        <li>Epic TDR Testing: functional testing and defect documentation</li>
+                        <li>Cross-functional workflow validation and communication</li>
+                    </ul>
+                </article>
+
+                <article class="panel wide" id="projects">
+                    <h3>Featured Projects</h3>
+                    <div class="projects-grid">
+                        <div class="project">
+                            <div class="project-shot">Project screenshot<br>placeholder</div>
+                            <div class="project-body">
+                                <strong>Playwright Automation Framework</strong>
+                                <p>Reusable E2E automation framework with maintainable page modeling and reporting.</p>
+                                <div class="stack"><span>Playwright</span><span>TypeScript</span><span>GitHub Actions</span></div>
+                                <div class="project-links">
+                                    <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
+                                    <a href="#">Live Demo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project">
+                            <div class="project-shot">Project screenshot<br>placeholder</div>
+                            <div class="project-body">
+                                <strong>API Testing Suite</strong>
+                                <p>Automated API validation for endpoint responses, error handling, and regression checks.</p>
+                                <div class="stack"><span>Postman</span><span>JavaScript</span><span>REST</span></div>
+                                <div class="project-links">
+                                    <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
+                                    <a href="#">Live Demo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project">
+                            <div class="project-shot">Project screenshot<br>placeholder</div>
+                            <div class="project-body">
+                                <strong>SQL Data Validation Project</strong>
+                                <p>Data quality checks and SQL assertions to detect integrity and business rule violations.</p>
+                                <div class="stack"><span>SQL</span><span>Data QA</span><span>Validation</span></div>
+                                <div class="project-links">
+                                    <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
+                                    <a href="#">Live Demo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project">
+                            <div class="project-shot">Project screenshot<br>placeholder</div>
+                            <div class="project-body">
+                                <strong>Apps I Have Been Working On</strong>
+                                <p>Current app experiments where I apply QA planning, test design, and automation workflow.</p>
+                                <div class="stack"><span>QA Workflow</span><span>Automation</span><span>Jira</span></div>
+                                <div class="project-links">
+                                    <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
+                                    <a href="#">Live Demo</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="panel">
+                    <h3>Certifications / Learning</h3>
+                    <ul>
+                        <li>Software QA Program at Mountainland technology</li>
+                        <li>Playwright</li>
                         <li>SQL</li>
                     </ul>
                 </article>
-                <article class="card skills-group">
-                    <h3>Automation</h3>
+
+                <article class="panel" id="contact">
+                    <h3>Contact</h3>
                     <ul>
-                        <li>Playwright</li>
-                        <li>WebdriverIO</li>
-                    </ul>
-                </article>
-                <article class="card skills-group">
-                    <h3>Testing</h3>
-                    <ul>
-                        <li>Functional Testing</li>
-                        <li>API Testing</li>
-                        <li>Regression Testing</li>
-                        <li>UAT</li>
-                        <li>Test Planning</li>
-                    </ul>
-                </article>
-                <article class="card skills-group">
-                    <h3>Tools</h3>
-                    <ul>
-                        <li>Git</li>
-                        <li>GitHub</li>
-                        <li>Postman</li>
-                        <li>ServiceNow</li>
-                        <li>Jira</li>
+                        <li><a href="mailto:weller.dallin@gmail.com">weller.dallin@gmail.com</a></li>
+                        <li><a href="https://www.linkedin.com/in/dallin-weller-a487032a7" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                        <li><a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a></li>
                     </ul>
                 </article>
             </div>
-        </section>
 
-        <section class="projects" id="featured-projects">
-            <h2>Featured Projects ⭐</h2>
-            <p class="projects-intro">Core QA projects focused on automation, API validation, and data quality. This is the centerpiece of the portfolio.</p>
-            <div class="project-grid">
-                <article class="project-card">
-                    <div class="project-shot">Screenshot Placeholder<br>Playwright Automation Framework</div>
-                    <div class="project-content">
-                        <h3>Playwright Automation Framework</h3>
-                        <p>Built a scalable E2E test framework with reusable page objects, trace capture, and CI-ready reporting to improve release confidence.</p>
-                        <div class="stack"><span>Playwright</span><span>TypeScript</span><span>GitHub Actions</span></div>
-                        <div class="project-links">
-                            <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
-                            <a href="#" aria-label="No live demo available yet">Live Demo (Soon)</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card">
-                    <div class="project-shot">Screenshot Placeholder<br>API Testing Suite</div>
-                    <div class="project-content">
-                        <h3>API Testing Suite</h3>
-                        <p>Designed API tests for endpoint validation, error handling, and contract stability with concise defect reporting and test data management.</p>
-                        <div class="stack"><span>Postman</span><span>JavaScript</span><span>REST API</span></div>
-                        <div class="project-links">
-                            <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
-                            <a href="#" aria-label="No live demo available yet">Live Demo (Soon)</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card">
-                    <div class="project-shot">Screenshot Placeholder<br>SQL Data Validation Project</div>
-                    <div class="project-content">
-                        <h3>SQL Data Validation Project</h3>
-                        <p>Created SQL checks for data completeness, integrity, and business-rule compliance to catch production-impacting data defects early.</p>
-                        <div class="stack"><span>SQL</span><span>Data Quality</span><span>Validation</span></div>
-                        <div class="project-links">
-                            <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
-                            <a href="#" aria-label="No live demo available yet">Live Demo (Soon)</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card">
-                    <div class="project-shot">Screenshot Placeholder<br>Apps I've Been Working On</div>
-                    <div class="project-content">
-                        <h3>Apps I've Been Working On</h3>
-                        <p>A growing set of projects where I practice full QA flow: test planning, automation, exploratory testing, and bug lifecycle tracking.</p>
-                        <div class="stack"><span>QA Workflow</span><span>Automation</span><span>Defect Tracking</span></div>
-                        <div class="project-links">
-                            <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
-                            <a href="#" aria-label="No live demo available yet">Live Demo (Soon)</a>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </section>
-
-        <section id="experience">
-            <h2>Experience</h2>
-            <div class="exp-grid">
-                <article class="card job">
-                    <h3>IT Asset Coordinator</h3>
-                    <ul>
-                        <li>Asset management and lifecycle tracking</li>
-                        <li>Process improvement and documentation</li>
-                        <li>Cross-functional collaboration</li>
-                    </ul>
-                </article>
-                <article class="card job">
-                    <h3>Epic TDR Testing</h3>
-                    <ul>
-                        <li>Functional testing across critical workflows</li>
-                        <li>Test execution and issue reproduction</li>
-                        <li>Defect documentation and workflow validation</li>
-                    </ul>
-                </article>
-            </div>
-        </section>
-
-        <section id="learning">
-            <h2>Certifications / Learning</h2>
-            <ul>
-                <li>Software QA Program at Mountainland technology</li>
-                <li>Playwright</li>
-                <li>SQL</li>
-            </ul>
-        </section>
-
-        <section class="resume" id="resume">
-            <h2>Resume</h2>
-            <p>Download my latest resume and connect with me directly.</p>
-            <a class="btn btn-primary" href="#" aria-label="Add your resume file URL here">Download Resume</a>
-            <p>Email: <a href="mailto:weller.dallin@gmail.com" style="color:#f8fafc;">weller.dallin@gmail.com</a><br>
-            LinkedIn: <a href="https://www.linkedin.com/in/dallin-weller-a487032a7" target="_blank" rel="noopener noreferrer" style="color:#f8fafc;">linkedin.com/in/dallin-weller</a><br>
-            GitHub: <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer" style="color:#f8fafc;">github.com/DwellerD</a></p>
-        </section>
-
-        <section class="arcade" id="fun-corner">
-            <h2>Fun Corner: Dino Runner</h2>
-            <p>Mini game inspired by the offline browser dino. Press Space or Up Arrow to jump on desktop, or tap the game area on mobile.</p>
-            <div class="dino-wrap">
-                <canvas id="dino-canvas" width="900" height="220" aria-label="Dino runner mini game"></canvas>
-                <div class="dino-hud">
-                    <div class="dino-hud-values">
-                        <span>Score: <strong id="dino-score">0</strong></span>
-                        <span>High Score: <strong id="dino-high-score">0</strong></span>
-                    </div>
-                    <button id="dino-restart" class="btn btn-secondary" type="button">Restart</button>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2>Contact</h2>
-            <div class="contact-grid">
-                <article class="card contact-item">
-                    <h3>Email</h3>
-                    <a href="mailto:weller.dallin@gmail.com">weller.dallin@gmail.com</a>
-                </article>
-                <article class="card contact-item">
-                    <h3>LinkedIn</h3>
-                    <a href="https://www.linkedin.com/in/dallin-weller-a487032a7" target="_blank" rel="noopener noreferrer">Profile</a>
-                </article>
-                <article class="card contact-item">
-                    <h3>GitHub</h3>
-                    <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">@DwellerD</a>
-                </article>
+            <div class="footer-contact">
+                <span>Email: <a href="mailto:weller.dallin@gmail.com">weller.dallin@gmail.com</a></span>
+                <span>LinkedIn: <a href="https://www.linkedin.com/in/dallin-weller-a487032a7" target="_blank" rel="noopener noreferrer">dallin-weller</a></span>
+                <span>GitHub: <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">DwellerD</a></span>
             </div>
         </section>
     </main>
-
-    <script>
-        (function () {
-            const canvas = document.getElementById("dino-canvas");
-            const scoreEl = document.getElementById("dino-score");
-            const highScoreEl = document.getElementById("dino-high-score");
-            const restartBtn = document.getElementById("dino-restart");
-
-            if (!canvas || !scoreEl || !highScoreEl || !restartBtn) {
-                return;
-            }
-
-            const ctx = canvas.getContext("2d");
-            if (!ctx) {
-                return;
-            }
-
-            const GROUND_Y = 170;
-            const dino = {
-                x: 68,
-                y: GROUND_Y,
-                w: 34,
-                h: 42,
-                vy: 0,
-                onGround: true,
-            };
-
-            let score = 0;
-            let highScore = 0;
-            let speed = 6;
-            let started = false;
-            let gameOver = false;
-            let frame = 0;
-            let spawnTicker = 0;
-            let nextSpawn = 90;
-            let obstacles = [];
-
-            function randomSpawnDelay() {
-                return 70 + Math.floor(Math.random() * 75);
-            }
-
-            function resetGame() {
-                dino.y = GROUND_Y;
-                dino.vy = 0;
-                dino.onGround = true;
-                score = 0;
-                speed = 6;
-                frame = 0;
-                spawnTicker = 0;
-                nextSpawn = randomSpawnDelay();
-                obstacles = [];
-                started = false;
-                gameOver = false;
-                scoreEl.textContent = "0";
-            }
-
-            function jump() {
-                if (gameOver) {
-                    resetGame();
-                }
-                if (dino.onGround) {
-                    started = true;
-                    dino.vy = -11.2;
-                    dino.onGround = false;
-                }
-            }
-
-            function spawnObstacle() {
-                const tall = Math.random() > 0.55;
-                const width = tall ? 20 : 30;
-                const height = tall ? 44 : 30;
-                obstacles.push({
-                    x: canvas.width + 10,
-                    y: GROUND_Y + dino.h - height,
-                    w: width,
-                    h: height,
-                });
-            }
-
-            function collide(a, b) {
-                return (
-                    a.x < b.x + b.w &&
-                    a.x + a.w > b.x &&
-                    a.y < b.y + b.h &&
-                    a.y + a.h > b.y
-                );
-            }
-
-            function drawGround() {
-                ctx.strokeStyle = "#98a2b3";
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                ctx.moveTo(0, GROUND_Y + dino.h + 1);
-                ctx.lineTo(canvas.width, GROUND_Y + dino.h + 1);
-                ctx.stroke();
-
-                ctx.fillStyle = "#c8cfd9";
-                for (let i = 0; i < 20; i += 1) {
-                    const x = (i * 80 - (frame * speed * 0.8) % 80);
-                    ctx.fillRect(x, GROUND_Y + dino.h + 7, 36, 2);
-                }
-            }
-
-            function drawDino() {
-                ctx.fillStyle = "#2f3c4f";
-                ctx.fillRect(dino.x, dino.y, dino.w, dino.h);
-                ctx.fillRect(dino.x + dino.w - 4, dino.y + 11, 13, 10);
-                ctx.clearRect(dino.x + dino.w + 4, dino.y + 14, 5, 3);
-                ctx.fillStyle = "#ffffff";
-                ctx.fillRect(dino.x + dino.w - 11, dino.y + 8, 4, 4);
-                ctx.fillStyle = "#2f3c4f";
-                ctx.fillRect(dino.x + 4, dino.y + dino.h - 1, 7, 8);
-                ctx.fillRect(dino.x + 20, dino.y + dino.h - 1, 7, 8);
-            }
-
-            function drawObstacles() {
-                ctx.fillStyle = "#4a5568";
-                obstacles.forEach((obs) => {
-                    ctx.fillRect(obs.x, obs.y, obs.w, obs.h);
-                    if (obs.h > 35) {
-                        ctx.fillRect(obs.x + 4, obs.y - 8, 8, 8);
-                    }
-                });
-            }
-
-            function drawOverlay() {
-                if (!started) {
-                    ctx.fillStyle = "#2d3748";
-                    ctx.font = "600 18px Space Grotesk, sans-serif";
-                    ctx.textAlign = "center";
-                    ctx.fillText("Press Space, Up Arrow, or Tap to Start", canvas.width / 2, 70);
-                }
-                if (gameOver) {
-                    ctx.fillStyle = "#111827";
-                    ctx.font = "700 26px Space Grotesk, sans-serif";
-                    ctx.textAlign = "center";
-                    ctx.fillText("Game Over", canvas.width / 2, 78);
-                    ctx.font = "500 16px Space Grotesk, sans-serif";
-                    ctx.fillText("Press Jump or Restart", canvas.width / 2, 104);
-                }
-            }
-
-            function update() {
-                if (!started || gameOver) {
-                    return;
-                }
-
-                frame += 1;
-                speed = Math.min(13, speed + 0.002);
-
-                dino.vy += 0.62;
-                dino.y += dino.vy;
-                if (dino.y >= GROUND_Y) {
-                    dino.y = GROUND_Y;
-                    dino.vy = 0;
-                    dino.onGround = true;
-                }
-
-                spawnTicker += 1;
-                if (spawnTicker >= nextSpawn) {
-                    spawnObstacle();
-                    spawnTicker = 0;
-                    nextSpawn = randomSpawnDelay();
-                }
-
-                obstacles.forEach((obs) => {
-                    obs.x -= speed;
-                });
-                obstacles = obstacles.filter((obs) => obs.x + obs.w > -20);
-
-                const hit = obstacles.some((obs) => collide(dino, obs));
-                if (hit) {
-                    gameOver = true;
-                    highScore = Math.max(highScore, Math.floor(score));
-                    highScoreEl.textContent = String(highScore);
-                }
-
-                score += speed * 0.08;
-                scoreEl.textContent = String(Math.floor(score));
-            }
-
-            function render() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                drawGround();
-                drawDino();
-                drawObstacles();
-                drawOverlay();
-            }
-
-            function loop() {
-                update();
-                render();
-                requestAnimationFrame(loop);
-            }
-
-            document.addEventListener("keydown", (event) => {
-                if (event.code === "Space" || event.code === "ArrowUp") {
-                    event.preventDefault();
-                    jump();
-                }
-            });
-
-            canvas.addEventListener("pointerdown", jump);
-            restartBtn.addEventListener("click", resetGame);
-
-            resetGame();
-            loop();
-        })();
-    </script>
 </body>
 </html>
