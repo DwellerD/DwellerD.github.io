@@ -324,13 +324,77 @@
             background: #101520;
         }
 
-        .app-media video {
+        .app-slider {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .app-slider-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 260ms ease;
+        }
+
+        .app-slide {
+            min-width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .app-slide video,
+        .app-slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center center;
             display: block;
             background: #101520;
+        }
+
+        .app-slide-placeholder {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 1rem;
+            color: #e6ebf6;
+            background:
+                linear-gradient(145deg, #1f2a3a, #131a26),
+                repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.04) 0 10px, rgba(255, 255, 255, 0.01) 10px 20px);
+            font-size: 0.92rem;
+        }
+
+        .app-slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 36px;
+            height: 36px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            background: rgba(15, 20, 30, 0.58);
+            color: #ffffff;
+            font-size: 1.1rem;
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .app-slider-btn:hover {
+            background: rgba(15, 20, 30, 0.75);
+        }
+
+        .app-slider-btn.prev {
+            left: 10px;
+        }
+
+        .app-slider-btn.next {
+            right: 10px;
         }
 
         .app-fallback {
@@ -645,16 +709,30 @@
                                     <article class="app-card">
                                         <h4>Hair App Marketplace (Flutter + Supabase)</h4>
                                         <div class="app-media">
-                                            <video class="app-demo-video" controls playsinline preload="metadata" aria-label="Hair app screen recording demo">
-                                                <source src="Photos/ScreenRecordingHairApp.mp4" type="video/mp4">
-                                                <source src="Photos/ScreenRecordingHairApp.mov" type="video/quicktime">
-                                                Your browser does not support embedded video.
-                                            </video>
+                                            <div class="app-slider" data-slider>
+                                                <button class="app-slider-btn prev" type="button" aria-label="Previous app slide" data-dir="prev">&#8249;</button>
+                                                <div class="app-slider-track" data-track>
+                                                    <div class="app-slide">
+                                                        <video class="app-demo-video" controls playsinline preload="metadata" aria-label="Hair app screen recording demo">
+                                                            <source src="Photos/ScreenRecordingHairApp.mp4" type="video/mp4">
+                                                            <source src="Photos/ScreenRecordingHairApp.mov" type="video/quicktime">
+                                                            Your browser does not support embedded video.
+                                                        </video>
+                                                    </div>
+                                                    <div class="app-slide">
+                                                        <div class="app-slide-placeholder">Slide 2: Add another app flow screenshot or recording in this slot</div>
+                                                    </div>
+                                                    <div class="app-slide">
+                                                        <div class="app-slide-placeholder">Slide 3: Showcase QA evidence like test case execution or bug fix before/after</div>
+                                                    </div>
+                                                </div>
+                                                <button class="app-slider-btn next" type="button" aria-label="Next app slide" data-dir="next">&#8250;</button>
+                                            </div>
                                         </div>
                                         <p>Builing a near production-ready Flutter + Supabase mobile marketplace for in-home hair services, featuring real availability scheduling, role-based customer/admin/stylist workflows, and an automated stylist dispatch engine with decline/reassignment handling.</p>
                                         <p class="app-fallback">If the embedded player does not load in your browser, use Open Recording below.</p>
                                         <div class="project-links">
-                                            <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
+                                            <a href="https://github.com/DwellerD/MyMobileHairStylist.git" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
                                             <a href="Photos/ScreenRecordingHairApp.mov" target="_blank" rel="noopener noreferrer">Open Recording</a>
                                         </div>
                                     </article>
@@ -715,6 +793,38 @@
         </section>
     </main>
     <script>
+        (function () {
+            const sliders = document.querySelectorAll("[data-slider]");
+            sliders.forEach((slider) => {
+                const track = slider.querySelector("[data-track]");
+                const slides = slider.querySelectorAll(".app-slide");
+                const prev = slider.querySelector(".app-slider-btn.prev");
+                const next = slider.querySelector(".app-slider-btn.next");
+                if (!track || slides.length === 0 || !prev || !next) {
+                    return;
+                }
+
+                let index = 0;
+
+                function render() {
+                    track.style.transform = "translateX(" + (-index * 100) + "%)";
+                }
+
+                function step(direction) {
+                    if (direction === "next") {
+                        index = (index + 1) % slides.length;
+                    } else {
+                        index = (index - 1 + slides.length) % slides.length;
+                    }
+                    render();
+                }
+
+                prev.addEventListener("click", () => step("prev"));
+                next.addEventListener("click", () => step("next"));
+                render();
+            });
+        })();
+
         (function () {
             const canvas = document.getElementById("dino-canvas");
             const hiEl = document.getElementById("dino-hi");
