@@ -36,17 +36,18 @@
         body {
             margin: 0;
             font-family: "Manrope", "Segoe UI", sans-serif;
-            background: radial-gradient(circle at 25% 15%, #c3afc0, #ab93a7 70%);
+            background: var(--frame-bg);
             color: var(--text-main);
             line-height: 1.55;
         }
 
         .site-frame {
-            width: min(1120px, 94vw);
-            margin: 2rem auto;
+            width: 100%;
+            min-height: 100vh;
+            margin: 0;
             background: var(--frame-bg);
-            border: 1px solid rgba(255, 255, 255, 0.35);
-            box-shadow: var(--shadow);
+            border: 0;
+            box-shadow: none;
             overflow: hidden;
         }
 
