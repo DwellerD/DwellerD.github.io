@@ -785,9 +785,9 @@
             }
 
             function scheduleNextObstacle(complexity) {
-                const randomGap = randomInt(140, 340);
-                const complexityGap = complexity * randomInt(26, 44);
-                const minRecoveryGap = randomInt(220, 300);
+                const randomGap = randomInt(220, 440);
+                const complexityGap = complexity * randomInt(34, 56);
+                const minRecoveryGap = randomInt(300, 410);
                 const distancePx = Math.max(minRecoveryGap, randomGap + complexityGap);
                 nextObstacleAt = Math.max(42, Math.floor(distancePx / speed));
             }
@@ -804,16 +804,16 @@
                 let complexity = 1;
 
                 // Keep variation high but preserve recoverable landing/jump windows.
-                if (!useBird && Math.random() < 0.18) {
+                if (!useBird && Math.random() < 0.12) {
                     const next = createCactus(["singleSmall", "singleTall", "doubleSmall"][randomInt(0, 2)]);
-                    next.x = obstacle.x + obstacle.w + randomInt(58, 124);
+                    next.x = obstacle.x + obstacle.w + randomInt(88, 170);
                     obstacles.push(next);
                     complexity += 1;
                 }
 
-                if (!useBird && Math.random() < 0.08) {
+                if (!useBird && Math.random() < 0.04) {
                     const third = createCactus(["singleSmall", "doubleSmall"][randomInt(0, 1)]);
-                    third.x = obstacles[obstacles.length - 1].x + obstacles[obstacles.length - 1].w + randomInt(74, 142);
+                    third.x = obstacles[obstacles.length - 1].x + obstacles[obstacles.length - 1].w + randomInt(120, 220);
                     obstacles.push(third);
                     complexity += 1;
                 }
