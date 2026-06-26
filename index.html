@@ -255,6 +255,48 @@
             text-align: center;
         }
 
+        .arcade {
+            background: linear-gradient(165deg, #f4fbf6, #fbfaf5);
+        }
+
+        .arcade p {
+            color: var(--muted);
+        }
+
+        .dino-wrap {
+            margin-top: 0.9rem;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: #ffffff;
+            padding: 0.8rem;
+        }
+
+        #dino-canvas {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #d4d8df;
+            display: block;
+            background: linear-gradient(180deg, #ffffff, #f6f8fb);
+            touch-action: manipulation;
+        }
+
+        .dino-hud {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 0.65rem;
+            flex-wrap: wrap;
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.9rem;
+        }
+
+        .dino-hud-values {
+            display: flex;
+            gap: 0.8rem;
+        }
+
         .contact-item a {
             color: var(--accent-2);
             text-decoration: none;
@@ -294,6 +336,10 @@
             .job,
             .contact-item {
                 grid-column: span 12;
+            }
+
+            .dino-hud {
+                align-items: flex-start;
             }
         }
     </style>
@@ -461,6 +507,21 @@
             GitHub: <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer" style="color:#f8fafc;">github.com/DwellerD</a></p>
         </section>
 
+        <section class="arcade" id="fun-corner">
+            <h2>Fun Corner: Dino Runner</h2>
+            <p>Mini game inspired by the offline browser dino. Press Space or Up Arrow to jump on desktop, or tap the game area on mobile.</p>
+            <div class="dino-wrap">
+                <canvas id="dino-canvas" width="900" height="220" aria-label="Dino runner mini game"></canvas>
+                <div class="dino-hud">
+                    <div class="dino-hud-values">
+                        <span>Score: <strong id="dino-score">0</strong></span>
+                        <span>High Score: <strong id="dino-high-score">0</strong></span>
+                    </div>
+                    <button id="dino-restart" class="btn btn-secondary" type="button">Restart</button>
+                </div>
+            </div>
+        </section>
+
         <section id="contact">
             <h2>Contact</h2>
             <div class="contact-grid">
@@ -479,5 +540,214 @@
             </div>
         </section>
     </main>
+
+    <script>
+        (function () {
+            const canvas = document.getElementById("dino-canvas");
+            const scoreEl = document.getElementById("dino-score");
+            const highScoreEl = document.getElementById("dino-high-score");
+            const restartBtn = document.getElementById("dino-restart");
+
+            if (!canvas || !scoreEl || !highScoreEl || !restartBtn) {
+                return;
+            }
+
+            const ctx = canvas.getContext("2d");
+            if (!ctx) {
+                return;
+            }
+
+            const GROUND_Y = 170;
+            const dino = {
+                x: 68,
+                y: GROUND_Y,
+                w: 34,
+                h: 42,
+                vy: 0,
+                onGround: true,
+            };
+
+            let score = 0;
+            let highScore = 0;
+            let speed = 6;
+            let started = false;
+            let gameOver = false;
+            let frame = 0;
+            let spawnTicker = 0;
+            let nextSpawn = 90;
+            let obstacles = [];
+
+            function randomSpawnDelay() {
+                return 70 + Math.floor(Math.random() * 75);
+            }
+
+            function resetGame() {
+                dino.y = GROUND_Y;
+                dino.vy = 0;
+                dino.onGround = true;
+                score = 0;
+                speed = 6;
+                frame = 0;
+                spawnTicker = 0;
+                nextSpawn = randomSpawnDelay();
+                obstacles = [];
+                started = false;
+                gameOver = false;
+                scoreEl.textContent = "0";
+            }
+
+            function jump() {
+                if (gameOver) {
+                    resetGame();
+                }
+                if (dino.onGround) {
+                    started = true;
+                    dino.vy = -11.2;
+                    dino.onGround = false;
+                }
+            }
+
+            function spawnObstacle() {
+                const tall = Math.random() > 0.55;
+                const width = tall ? 20 : 30;
+                const height = tall ? 44 : 30;
+                obstacles.push({
+                    x: canvas.width + 10,
+                    y: GROUND_Y + dino.h - height,
+                    w: width,
+                    h: height,
+                });
+            }
+
+            function collide(a, b) {
+                return (
+                    a.x < b.x + b.w &&
+                    a.x + a.w > b.x &&
+                    a.y < b.y + b.h &&
+                    a.y + a.h > b.y
+                );
+            }
+
+            function drawGround() {
+                ctx.strokeStyle = "#98a2b3";
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(0, GROUND_Y + dino.h + 1);
+                ctx.lineTo(canvas.width, GROUND_Y + dino.h + 1);
+                ctx.stroke();
+
+                ctx.fillStyle = "#c8cfd9";
+                for (let i = 0; i < 20; i += 1) {
+                    const x = (i * 80 - (frame * speed * 0.8) % 80);
+                    ctx.fillRect(x, GROUND_Y + dino.h + 7, 36, 2);
+                }
+            }
+
+            function drawDino() {
+                ctx.fillStyle = "#2f3c4f";
+                ctx.fillRect(dino.x, dino.y, dino.w, dino.h);
+                ctx.fillRect(dino.x + dino.w - 4, dino.y + 11, 13, 10);
+                ctx.clearRect(dino.x + dino.w + 4, dino.y + 14, 5, 3);
+                ctx.fillStyle = "#ffffff";
+                ctx.fillRect(dino.x + dino.w - 11, dino.y + 8, 4, 4);
+                ctx.fillStyle = "#2f3c4f";
+                ctx.fillRect(dino.x + 4, dino.y + dino.h - 1, 7, 8);
+                ctx.fillRect(dino.x + 20, dino.y + dino.h - 1, 7, 8);
+            }
+
+            function drawObstacles() {
+                ctx.fillStyle = "#4a5568";
+                obstacles.forEach((obs) => {
+                    ctx.fillRect(obs.x, obs.y, obs.w, obs.h);
+                    if (obs.h > 35) {
+                        ctx.fillRect(obs.x + 4, obs.y - 8, 8, 8);
+                    }
+                });
+            }
+
+            function drawOverlay() {
+                if (!started) {
+                    ctx.fillStyle = "#2d3748";
+                    ctx.font = "600 18px Space Grotesk, sans-serif";
+                    ctx.textAlign = "center";
+                    ctx.fillText("Press Space, Up Arrow, or Tap to Start", canvas.width / 2, 70);
+                }
+                if (gameOver) {
+                    ctx.fillStyle = "#111827";
+                    ctx.font = "700 26px Space Grotesk, sans-serif";
+                    ctx.textAlign = "center";
+                    ctx.fillText("Game Over", canvas.width / 2, 78);
+                    ctx.font = "500 16px Space Grotesk, sans-serif";
+                    ctx.fillText("Press Jump or Restart", canvas.width / 2, 104);
+                }
+            }
+
+            function update() {
+                if (!started || gameOver) {
+                    return;
+                }
+
+                frame += 1;
+                speed = Math.min(13, speed + 0.002);
+
+                dino.vy += 0.62;
+                dino.y += dino.vy;
+                if (dino.y >= GROUND_Y) {
+                    dino.y = GROUND_Y;
+                    dino.vy = 0;
+                    dino.onGround = true;
+                }
+
+                spawnTicker += 1;
+                if (spawnTicker >= nextSpawn) {
+                    spawnObstacle();
+                    spawnTicker = 0;
+                    nextSpawn = randomSpawnDelay();
+                }
+
+                obstacles.forEach((obs) => {
+                    obs.x -= speed;
+                });
+                obstacles = obstacles.filter((obs) => obs.x + obs.w > -20);
+
+                const hit = obstacles.some((obs) => collide(dino, obs));
+                if (hit) {
+                    gameOver = true;
+                    highScore = Math.max(highScore, Math.floor(score));
+                    highScoreEl.textContent = String(highScore);
+                }
+
+                score += speed * 0.08;
+                scoreEl.textContent = String(Math.floor(score));
+            }
+
+            function render() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawGround();
+                drawDino();
+                drawObstacles();
+                drawOverlay();
+            }
+
+            function loop() {
+                update();
+                render();
+                requestAnimationFrame(loop);
+            }
+
+            document.addEventListener("keydown", (event) => {
+                if (event.code === "Space" || event.code === "ArrowUp") {
+                    event.preventDefault();
+                    jump();
+                }
+            });
+
+            canvas.addEventListener("pointerdown", jump);
+            restartBtn.addEventListener("click", resetGame);
+
+            resetGame();
+            loop();
+        })();
+    </script>
 </body>
 </html>
