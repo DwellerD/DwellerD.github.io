@@ -280,6 +280,15 @@
             background: linear-gradient(120deg, #f4f4f7, #e7e8ed);
         }
 
+        .project-shot video {
+            width: 100%;
+            height: 100%;
+            min-height: 130px;
+            object-fit: cover;
+            display: block;
+            background: #161a24;
+        }
+
         .project-body {
             padding: 0.95rem;
         }
@@ -561,14 +570,19 @@
                         </div>
 
                         <div class="project">
-                            <div class="project-shot">Project screenshot<br>placeholder</div>
+                            <div class="project-shot">
+                                <video controls playsinline preload="metadata" aria-label="Hair app screen recording demo">
+                                    <source src="Photos/ScreenRecordingHairApp.mov" type="video/quicktime">
+                                    Your browser does not support embedded video.
+                                </video>
+                            </div>
                             <div class="project-body">
                                 <strong>Apps I Have Been Working On</strong>
-                                <p>Current app experiments where I apply QA planning, test design, and automation workflow.</p>
-                                <div class="stack"><span>QA Workflow</span><span>Automation</span><span>Jira</span></div>
+                                <p>Current app experiments where I apply QA planning, test design, and automation workflow. Included is a short demo recording of the Hair App flow.</p>
+                                <div class="stack"><span>QA Workflow</span><span>Automation</span><span>Jira</span><span>Demo Recording</span></div>
                                 <div class="project-links">
                                     <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
-                                    <a href="#">Live Demo</a>
+                                    <a href="Photos/ScreenRecordingHairApp.mov" target="_blank" rel="noopener noreferrer">Open Recording</a>
                                 </div>
                             </div>
                         </div>
