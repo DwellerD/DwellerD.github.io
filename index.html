@@ -775,6 +775,9 @@
                 if (type === "singleTall") {
                     return { type, w: 30, h: 58, y: GROUND_Y + (dino.hStanding - 58) };
                 }
+                if (type === "singleMedium") {
+                    return { type, w: 26, h: 48, y: GROUND_Y + (dino.hStanding - 48) };
+                }
                 if (type === "singleSmall") {
                     return { type, w: 22, h: 40, y: GROUND_Y + (dino.hStanding - 40) };
                 }
@@ -789,6 +792,9 @@
                 }
                 if (type === "doubleTall") {
                     return { type, w: 60, h: 58, y: GROUND_Y + (dino.hStanding - 58) };
+                }
+                if (type === "stairQuad") {
+                    return { type, w: 70, h: 58, y: GROUND_Y + (dino.hStanding - 58) };
                 }
                 return { type: "singleSmall", w: 22, h: 40, y: GROUND_Y + (dino.hStanding - 40) };
             }
@@ -829,13 +835,13 @@
 
                 let cactusPool = ["singleSmall", "singleTall", "doubleSmall"];
                 if (score > 320) {
-                    cactusPool = ["singleSmall", "singleTall", "doubleSmall", "tripleSmall"];
+                    cactusPool = ["singleSmall", "singleMedium", "singleTall", "doubleSmall", "tripleSmall"];
                 }
                 if (score > 900) {
-                    cactusPool = ["singleSmall", "singleTall", "doubleSmall", "tripleSmall", "mixedPair"];
+                    cactusPool = ["singleSmall", "singleMedium", "singleTall", "doubleSmall", "tripleSmall", "mixedPair"];
                 }
                 if (score > 1800) {
-                    cactusPool = ["singleSmall", "singleTall", "doubleSmall", "tripleSmall", "mixedPair", "doubleTall"];
+                    cactusPool = ["singleSmall", "singleMedium", "singleTall", "doubleSmall", "tripleSmall", "mixedPair", "doubleTall", "stairQuad"];
                 }
 
                 const obstacle = useBird
@@ -895,7 +901,7 @@
 
             function drawCactus(obs) {
                 const color = "#3c3c3c";
-                if (obs.type === "singleTall" || obs.type === "singleSmall") {
+                if (obs.type === "singleTall" || obs.type === "singleSmall" || obs.type === "singleMedium") {
                     drawPixelRect(obs.x + 7, obs.y, 8, obs.h, color);
                     drawPixelRect(obs.x + 2, obs.y + 16, 5, 8, color);
                     drawPixelRect(obs.x + 15, obs.y + 12, 5, 10, color);
@@ -930,6 +936,20 @@
                         drawPixelRect(sx + 8, obs.y, 8, 58, color);
                         drawPixelRect(sx + 3, obs.y + 14, 4, 10, color);
                         drawPixelRect(sx + 16, obs.y + 11, 4, 10, color);
+                    }
+                    return;
+                }
+
+                if (obs.type === "stairQuad") {
+                    const heights = [40, 48, 58, 40];
+                    const segmentW = 16;
+                    for (let i = 0; i < heights.length; i += 1) {
+                        const h = heights[i];
+                        const sy = GROUND_Y + (dino.hStanding - h);
+                        const sx = obs.x + i * segmentW;
+                        drawPixelRect(sx + 4, sy, 7, h, color);
+                        drawPixelRect(sx, sy + 14, 4, 8, color);
+                        drawPixelRect(sx + 11, sy + 12, 4, 9, color);
                     }
                 }
             }
