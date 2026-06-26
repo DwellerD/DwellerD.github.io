@@ -793,6 +793,21 @@
                 if (type === "doubleTall") {
                     return { type, w: 60, h: 58, y: GROUND_Y + (dino.hStanding - 58) };
                 }
+                if (type === "mediumSmall") {
+                    return { type, w: 34, h: 48, y: GROUND_Y + (dino.hStanding - 48) };
+                }
+                if (type === "smallLarge") {
+                    return { type, w: 38, h: 58, y: GROUND_Y + (dino.hStanding - 58) };
+                }
+                if (type === "mediumLarge") {
+                    return { type, w: 40, h: 58, y: GROUND_Y + (dino.hStanding - 58) };
+                }
+                if (type === "largeSmall") {
+                    return { type, w: 38, h: 58, y: GROUND_Y + (dino.hStanding - 58) };
+                }
+                if (type === "largeMedium") {
+                    return { type, w: 40, h: 58, y: GROUND_Y + (dino.hStanding - 58) };
+                }
                 if (type === "stairQuad") {
                     return { type, w: 70, h: 58, y: GROUND_Y + (dino.hStanding - 58) };
                 }
@@ -831,17 +846,17 @@
                 }
 
                 const birdChance = Math.min(0.22, 0.07 + score / 6200);
-                const useBird = score > 700 && Math.random() < birdChance;
+                const useBird = score > 500 && Math.random() < birdChance;
 
-                let cactusPool = ["singleSmall", "singleTall", "doubleSmall"];
-                if (score > 320) {
-                    cactusPool = ["singleSmall", "singleMedium", "singleTall", "doubleSmall", "tripleSmall"];
-                }
-                if (score > 900) {
-                    cactusPool = ["singleSmall", "singleMedium", "singleTall", "doubleSmall", "tripleSmall", "mixedPair"];
-                }
-                if (score > 1800) {
-                    cactusPool = ["singleSmall", "singleMedium", "singleTall", "doubleSmall", "tripleSmall", "mixedPair", "doubleTall", "stairQuad"];
+                let cactusPool = ["singleSmall", "singleMedium", "singleTall", "doubleSmall"];
+                if (score <= 200) {
+                    cactusPool = ["singleSmall", "singleMedium", "singleTall", "doubleSmall"];
+                } else if (score <= 400) {
+                    cactusPool = ["singleSmall", "singleMedium", "singleTall", "doubleSmall", "tripleSmall", "mediumSmall", "smallLarge"];
+                } else if (score <= 800) {
+                    cactusPool = ["singleSmall", "singleMedium", "singleTall", "doubleSmall", "tripleSmall", "mixedPair", "mediumSmall", "smallLarge", "mediumLarge"];
+                } else {
+                    cactusPool = ["singleSmall", "singleMedium", "singleTall", "doubleSmall", "tripleSmall", "mixedPair", "doubleTall", "stairQuad", "mediumSmall", "smallLarge", "mediumLarge", "largeSmall", "largeMedium"];
                 }
 
                 const obstacle = useBird
@@ -937,6 +952,76 @@
                         drawPixelRect(sx + 3, obs.y + 14, 4, 10, color);
                         drawPixelRect(sx + 16, obs.y + 11, 4, 10, color);
                     }
+                    return;
+                }
+
+                if (obs.type === "mediumSmall") {
+                    const baseY = obs.y;
+                    drawPixelRect(obs.x + 5, baseY, 7, 48, color);
+                    drawPixelRect(obs.x + 1, baseY + 14, 4, 8, color);
+                    drawPixelRect(obs.x + 11, baseY + 12, 4, 9, color);
+
+                    const sY = GROUND_Y + (dino.hStanding - 40);
+                    const sx = obs.x + 16;
+                    drawPixelRect(sx + 5, sY, 7, 40, color);
+                    drawPixelRect(sx + 1, sY + 14, 4, 8, color);
+                    drawPixelRect(sx + 11, sY + 12, 4, 9, color);
+                    return;
+                }
+
+                if (obs.type === "smallLarge") {
+                    const sY = GROUND_Y + (dino.hStanding - 40);
+                    drawPixelRect(obs.x + 5, sY, 7, 40, color);
+                    drawPixelRect(obs.x + 1, sY + 14, 4, 8, color);
+                    drawPixelRect(obs.x + 11, sY + 12, 4, 9, color);
+
+                    const lY = GROUND_Y + (dino.hStanding - 58);
+                    const lx = obs.x + 18;
+                    drawPixelRect(lx + 5, lY, 7, 58, color);
+                    drawPixelRect(lx + 1, lY + 14, 4, 10, color);
+                    drawPixelRect(lx + 11, lY + 11, 4, 10, color);
+                    return;
+                }
+
+                if (obs.type === "mediumLarge") {
+                    const mY = GROUND_Y + (dino.hStanding - 48);
+                    drawPixelRect(obs.x + 5, mY, 7, 48, color);
+                    drawPixelRect(obs.x + 1, mY + 14, 4, 8, color);
+                    drawPixelRect(obs.x + 11, mY + 12, 4, 9, color);
+
+                    const lY = GROUND_Y + (dino.hStanding - 58);
+                    const lx = obs.x + 20;
+                    drawPixelRect(lx + 5, lY, 7, 58, color);
+                    drawPixelRect(lx + 1, lY + 14, 4, 10, color);
+                    drawPixelRect(lx + 11, lY + 11, 4, 10, color);
+                    return;
+                }
+
+                if (obs.type === "largeSmall") {
+                    const lY = GROUND_Y + (dino.hStanding - 58);
+                    drawPixelRect(obs.x + 5, lY, 7, 58, color);
+                    drawPixelRect(obs.x + 1, lY + 14, 4, 10, color);
+                    drawPixelRect(obs.x + 11, lY + 11, 4, 10, color);
+
+                    const sY = GROUND_Y + (dino.hStanding - 40);
+                    const sx = obs.x + 18;
+                    drawPixelRect(sx + 5, sY, 7, 40, color);
+                    drawPixelRect(sx + 1, sY + 14, 4, 8, color);
+                    drawPixelRect(sx + 11, sY + 12, 4, 9, color);
+                    return;
+                }
+
+                if (obs.type === "largeMedium") {
+                    const lY = GROUND_Y + (dino.hStanding - 58);
+                    drawPixelRect(obs.x + 5, lY, 7, 58, color);
+                    drawPixelRect(obs.x + 1, lY + 14, 4, 10, color);
+                    drawPixelRect(obs.x + 11, lY + 11, 4, 10, color);
+
+                    const mY = GROUND_Y + (dino.hStanding - 48);
+                    const mx = obs.x + 20;
+                    drawPixelRect(mx + 5, mY, 7, 48, color);
+                    drawPixelRect(mx + 1, mY + 14, 4, 8, color);
+                    drawPixelRect(mx + 11, mY + 12, 4, 9, color);
                     return;
                 }
 
