@@ -622,8 +622,8 @@
             const GROUND_Y = 208;
             const GRAVITY = 0.68;
             const JUMP_VELOCITY = -12.7;
-            const BASE_SPEED = 6;
-            const MAX_SPEED = 13.2;
+            const BASE_SPEED = 10.8;
+            const MAX_SPEED = 23.8;
             const SCORE_RATE = 0.016;
             const NIGHT_CYCLE_POINTS = 700;
             const CLOUD_Y_MIN = 24;
@@ -662,6 +662,7 @@
 
             let obstacles = [];
             let clouds = [];
+            let mountains = [];
 
             function formatScore(value) {
                 return String(Math.max(0, Math.floor(value))).padStart(5, "0");
@@ -684,6 +685,24 @@
                 }
             }
 
+            function seedMountains() {
+                mountains = [];
+                let cursor = -120;
+                while (cursor < canvas.width + 460) {
+                    const baseWidth = randomInt(130, 280);
+                    const peakHeight = randomInt(68, 150);
+                    mountains.push({
+                        x: cursor,
+                        baseWidth,
+                        peakHeight,
+                        peakOffset: randomInt(22, baseWidth - 24),
+                        speedFactor: randomRange(0.11, 0.3),
+                        shade: randomRange(0.82, 1.07),
+                    });
+                    cursor += baseWidth - randomInt(18, 64);
+                }
+            }
+
             function resetGame() {
                 cancelAnimationFrame(rafId);
                 started = false;
@@ -700,6 +719,7 @@
                 controls.jumpHeld = false;
                 obstacles = [];
                 clouds = [];
+                seedMountains();
                 dino.y = GROUND_Y;
                 dino.w = 44;
                 dino.h = dino.hStanding;
@@ -785,35 +805,58 @@
             }
 
             function scheduleNextObstacle(complexity) {
-                const randomGap = randomInt(220, 440);
-                const complexityGap = complexity * randomInt(34, 56);
-                const minRecoveryGap = randomInt(300, 410);
+                const randomGap = randomInt(700, 1050);
+                const complexityGap = complexity * randomInt(58, 90);
+                const minRecoveryGap = randomInt(780, 980);
                 const distancePx = Math.max(minRecoveryGap, randomGap + complexityGap);
-                nextObstacleAt = Math.max(42, Math.floor(distancePx / speed));
+                nextObstacleAt = Math.max(90, Math.floor(distancePx / speed));
             }
 
             function spawnObstacle() {
-                const birdChance = Math.min(0.36, 0.16 + score / 2600);
-                const useBird = score > 220 && Math.random() < birdChance;
+                const visible = obstacles.filter((obs) => obs.x + obs.w > 0).length;
+                if (visible >= 2) {
+                    return false;
+                }
+                if (visible === 1) {
+                    const lead = obstacles.find((obs) => obs.x + obs.w > 0);
+                    if (lead && lead.x > canvas.width * 0.38) {
+                        return false;
+                    }
+                }
+
+                const birdChance = Math.min(0.22, 0.07 + score / 6200);
+                const useBird = score > 700 && Math.random() < birdChance;
+
+                let cactusPool = ["singleSmall", "singleTall", "doubleSmall"];
+                if (score > 320) {
+                    cactusPool = ["singleSmall", "singleTall", "doubleSmall", "tripleSmall"];
+                }
+                if (score > 900) {
+                    cactusPool = ["singleSmall", "singleTall", "doubleSmall", "tripleSmall", "mixedPair"];
+                }
+                if (score > 1800) {
+                    cactusPool = ["singleSmall", "singleTall", "doubleSmall", "tripleSmall", "mixedPair", "doubleTall"];
+                }
+
                 const obstacle = useBird
                     ? createBird()
-                    : createCactus(["singleSmall", "singleTall", "doubleSmall", "tripleSmall", "mixedPair", "doubleTall"][randomInt(0, 5)]);
+                    : createCactus(cactusPool[randomInt(0, cactusPool.length - 1)]);
                 obstacle.x = canvas.width + randomInt(5, 60);
                 obstacles.push(obstacle);
 
                 let complexity = 1;
 
                 // Keep variation high but preserve recoverable landing/jump windows.
-                if (!useBird && Math.random() < 0.12) {
+                if (!useBird && score > 380 && Math.random() < 0.04) {
                     const next = createCactus(["singleSmall", "singleTall", "doubleSmall"][randomInt(0, 2)]);
-                    next.x = obstacle.x + obstacle.w + randomInt(88, 170);
+                    next.x = obstacle.x + obstacle.w + randomInt(180, 290);
                     obstacles.push(next);
                     complexity += 1;
                 }
 
-                if (!useBird && Math.random() < 0.04) {
+                if (!useBird && score > 1300 && Math.random() < 0.008) {
                     const third = createCactus(["singleSmall", "doubleSmall"][randomInt(0, 1)]);
-                    third.x = obstacles[obstacles.length - 1].x + obstacles[obstacles.length - 1].w + randomInt(120, 220);
+                    third.x = obstacles[obstacles.length - 1].x + obstacles[obstacles.length - 1].w + randomInt(260, 380);
                     obstacles.push(third);
                     complexity += 1;
                 }
@@ -823,6 +866,7 @@
                 }
 
                 scheduleNextObstacle(complexity);
+                return true;
             }
 
             function drawPixelRect(x, y, w, h, color) {
@@ -914,7 +958,7 @@
                 if (isNightMode()) {
                     return {
                         bg: "#1b1b1b",
-                        mountain: "#2b2b2b",
+                        mountain: "#3e3e3e",
                         cloud: "#4e4e4e",
                         ground: "#d8d8d8",
                         texture: "#8d8d8d",
@@ -922,7 +966,7 @@
                 }
                 return {
                     bg: "#ffffff",
-                    mountain: "#ececec",
+                    mountain: "#c8c8c8",
                     cloud: "#dadada",
                     ground: "#676767",
                     texture: "#9b9b9b",
@@ -930,18 +974,30 @@
             }
 
             function drawMountains(palette) {
-                ctx.fillStyle = palette.mountain;
-                for (let i = 0; i < 8; i += 1) {
-                    const baseX = (i * 170 - Math.floor(frame * speed * 0.18)) % (canvas.width + 180);
-                    const x = baseX - 60;
-                    const peak = 108 + (i % 3) * 18;
+                const horizonY = GROUND_Y + dino.hStanding + 4;
+
+                mountains.forEach((mountain) => {
+                    const tone = Math.min(1.2, Math.max(0.6, mountain.shade));
+                    const rgb = Math.round(parseInt(palette.mountain.slice(1, 3), 16) * tone);
+                    const g = Math.round(parseInt(palette.mountain.slice(3, 5), 16) * tone);
+                    const b = Math.round(parseInt(palette.mountain.slice(5, 7), 16) * tone);
+                    ctx.fillStyle = "rgb(" + Math.min(255, rgb) + "," + Math.min(255, g) + "," + Math.min(255, b) + ")";
+
                     ctx.beginPath();
-                    ctx.moveTo(x, GROUND_Y + dino.hStanding + 4);
-                    ctx.lineTo(x + 64, peak);
-                    ctx.lineTo(x + 128, GROUND_Y + dino.hStanding + 4);
+                    ctx.moveTo(mountain.x, horizonY);
+                    ctx.lineTo(mountain.x + mountain.peakOffset, horizonY - mountain.peakHeight);
+                    ctx.lineTo(mountain.x + mountain.baseWidth, horizonY);
                     ctx.closePath();
                     ctx.fill();
-                }
+
+                    // Add a second ridge to break up the triangular silhouette.
+                    ctx.beginPath();
+                    ctx.moveTo(mountain.x + mountain.baseWidth * 0.28, horizonY);
+                    ctx.lineTo(mountain.x + mountain.baseWidth * 0.58, horizonY - mountain.peakHeight * 0.62);
+                    ctx.lineTo(mountain.x + mountain.baseWidth * 0.9, horizonY);
+                    ctx.closePath();
+                    ctx.fill();
+                });
             }
 
             function drawCloud(cloud, palette) {
@@ -995,7 +1051,7 @@
                     return;
                 }
 
-                speed = Math.min(MAX_SPEED, speed + 0.0019);
+                speed = Math.min(MAX_SPEED, speed + 0.0034);
 
                 if (!dino.onGround && controls.jumpHeld && dino.jumpHoldTicks > 0 && dino.vy < -2.2) {
                     dino.vy -= 0.21;
@@ -1028,13 +1084,31 @@
                 });
                 clouds = clouds.filter((cloud) => cloud.x + cloud.w > -30);
 
+                let mountainTailX = mountains.reduce((max, mountain) => Math.max(max, mountain.x + mountain.baseWidth), canvas.width);
+                mountains.forEach((mountain) => {
+                    mountain.x -= speed * mountain.speedFactor;
+                    if (mountain.x + mountain.baseWidth < -40) {
+                        mountain.baseWidth = randomInt(130, 280);
+                        mountain.peakHeight = randomInt(68, 150);
+                        mountain.peakOffset = randomInt(22, mountain.baseWidth - 24);
+                        mountain.speedFactor = randomRange(0.11, 0.3);
+                        mountain.shade = randomRange(0.82, 1.07);
+                        mountain.x = mountainTailX + randomInt(40, 180);
+                        mountainTailX = mountain.x + mountain.baseWidth;
+                    }
+                });
+
                 if (obstacleCooldown > 0) {
                     obstacleCooldown -= 1;
                 }
                 nextObstacleAt -= 1;
                 if (nextObstacleAt <= 0 && obstacleCooldown <= 0) {
-                    spawnObstacle();
-                    obstacleCooldown = randomInt(2, 14);
+                    const spawned = spawnObstacle();
+                    if (spawned) {
+                        obstacleCooldown = randomInt(8, 22);
+                    } else {
+                        nextObstacleAt = randomInt(10, 24);
+                    }
                 }
 
                 obstacles.forEach((obs) => {
@@ -1086,6 +1160,7 @@
 
             function onKeyDown(event) {
                 if (event.code === "ArrowDown" || event.code === "KeyS") {
+                    event.preventDefault();
                     controls.crouchHeld = true;
                     controls.crouchLatched = true;
                     if (dino.onGround) {
