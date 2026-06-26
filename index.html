@@ -459,6 +459,29 @@
             color: var(--text-soft);
         }
 
+        .app-slide-caption {
+            margin: 0.15rem 0 0.7rem;
+            padding: 0.75rem 0.85rem;
+            border: 1px solid #d9e0ea;
+            border-left: 4px solid #245fa8;
+            border-radius: 8px;
+            background: linear-gradient(180deg, #f7faff, #f1f5fc);
+        }
+
+        .app-slide-caption h5 {
+            margin: 0 0 0.32rem;
+            font-size: 0.9rem;
+            color: #1b2c44;
+            letter-spacing: 0.01em;
+        }
+
+        .app-slide-caption p {
+            margin: 0;
+            font-size: 0.86rem;
+            line-height: 1.45;
+            color: #2b3a50;
+        }
+
         .app-placeholder {
             width: min(100%, 260px);
             aspect-ratio: 9 / 16;
@@ -765,7 +788,7 @@
                                     <article class="app-card">
                                         <h4>Hair App Marketplace (Flutter + Supabase)</h4>
                                         <div class="app-media">
-                                            <div class="app-slider" data-slider>
+                                            <div class="app-slider" data-slider data-caption-set="hair-app">
                                                 <button class="app-slider-btn prev" type="button" aria-label="Previous app slide" data-dir="prev">&#8249;</button>
                                                 <div class="app-slider-track" data-track>
                                                     <div class="app-slide">
@@ -787,7 +810,10 @@
                                                 <button class="app-slider-btn next" type="button" aria-label="Next app slide" data-dir="next">&#8250;</button>
                                             </div>
                                         </div>
-                                        <p>Builing a near production-ready Flutter + Supabase mobile marketplace for in-home hair services, featuring real availability scheduling, role-based customer/admin/stylist workflows, and an automated stylist dispatch engine with decline/reassignment handling.</p>
+                                        <div class="app-slide-caption" aria-live="polite">
+                                            <h5 data-slide-caption-title>Product Build + Dispatch Automation</h5>
+                                            <p data-slide-caption-body>Building a near production-ready Flutter + Supabase mobile marketplace for in-home hair services, featuring real availability scheduling, role-based customer/admin/stylist workflows, and an automated stylist dispatch engine with decline/reassignment handling.</p>
+                                        </div>
                                         <p class="app-fallback">If the embedded player does not load in your browser, use Open Recording below.</p>
                                         <div class="project-links">
                                             <a href="https://github.com/DwellerD/MyMobileHairStylist.git" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
@@ -870,6 +896,33 @@
 
                 function render() {
                     track.style.transform = "translateX(" + (-index * 100) + "%)";
+
+                    if (slider.getAttribute("data-caption-set") === "hair-app") {
+                        const captionTitle = slider.closest(".app-card")?.querySelector("[data-slide-caption-title]");
+                        const captionBody = slider.closest(".app-card")?.querySelector("[data-slide-caption-body]");
+                        const copy = [
+                            {
+                                title: "Product Build + Dispatch Automation",
+                                body: "Building a near production-ready Flutter + Supabase mobile marketplace for in-home hair services, featuring real availability scheduling, role-based customer/admin/stylist workflows, and an automated stylist dispatch engine with decline/reassignment handling."
+                            },
+                            {
+                                title: "Agile Project Management",
+                                body: "Managed development using Jira Kanban with over <strong>30 user stories</strong> covering payment processing, booking workflows, testing, legal compliance, release readiness, and production deployment."
+                            },
+                            {
+                                title: "QA Evidence In Progress",
+                                body: "Slide 3 is reserved for additional QA artifacts such as test execution results, defect lifecycle snapshots, and release verification evidence."
+                            }
+                        ];
+
+                        const current = copy[index] || copy[0];
+                        if (captionTitle) {
+                            captionTitle.textContent = current.title;
+                        }
+                        if (captionBody) {
+                            captionBody.innerHTML = current.body;
+                        }
+                    }
                 }
 
                 function step(direction) {
