@@ -482,6 +482,57 @@
             color: #2b3a50;
         }
 
+        .sql-media {
+            width: 100%;
+            min-height: 360px;
+            aspect-ratio: 16 / 10;
+            margin: 0.65rem 0 0.85rem;
+            border: 1px solid #cfd5de;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #101520;
+        }
+
+        .sql-slide {
+            background: #0f1624;
+            padding: 0.6rem;
+            box-sizing: border-box;
+        }
+
+        .sql-slide-grid {
+            display: grid;
+            gap: 0.55rem;
+            width: 100%;
+            height: 100%;
+            grid-auto-rows: 1fr;
+        }
+
+        .sql-grid-1 {
+            grid-template-columns: 1fr;
+        }
+
+        .sql-grid-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .sql-grid-3 {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .sql-slide-grid .slide-zoom-btn {
+            border: 1px solid rgba(255, 255, 255, 0.22);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #101520;
+        }
+
+        .sql-slide-grid img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #101520;
+        }
+
         .app-placeholder {
             width: min(100%, 260px);
             aspect-ratio: 9 / 16;
@@ -769,10 +820,71 @@
                         </div>
 
                         <div class="project">
-                            <div class="project-shot">Project screenshot<br>placeholder</div>
                             <div class="project-body">
                                 <strong>SQL Data Validation Project</strong>
+                                <div class="sql-media">
+                                    <div class="app-slider" data-slider data-caption-set="sql-validation">
+                                        <button class="app-slider-btn prev" type="button" aria-label="Previous SQL validation slide" data-dir="prev">&#8249;</button>
+                                        <div class="app-slider-track" data-track>
+                                            <div class="app-slide sql-slide">
+                                                <div class="sql-slide-grid sql-grid-2">
+                                                    <button type="button" class="slide-zoom-btn" data-lightbox-src="Photos/booking-integrity-missing-participants.png" aria-label="Open booking integrity missing participants screenshot larger">
+                                                        <img src="Photos/booking-integrity-missing-participants.png" alt="Booking integrity query showing missing participants">
+                                                    </button>
+                                                    <button type="button" class="slide-zoom-btn" data-lightbox-src="Photos/booking-integrity-missing-services.png" aria-label="Open booking integrity missing services screenshot larger">
+                                                        <img src="Photos/booking-integrity-missing-services.png" alt="Booking integrity query showing missing services">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="app-slide sql-slide">
+                                                <div class="sql-slide-grid sql-grid-3">
+                                                    <button type="button" class="slide-zoom-btn" data-lightbox-src="Photos/scheduling-rules-stylist-double-booking.png" aria-label="Open stylist double booking scheduling rule screenshot larger">
+                                                        <img src="Photos/scheduling-rules-stylist-double-booking.png" alt="Scheduling rules query for stylist double booking conflicts">
+                                                    </button>
+                                                    <button type="button" class="slide-zoom-btn" data-lightbox-src="Photos/scheduling-rules-availability-coverage.png" aria-label="Open availability coverage scheduling rule screenshot larger">
+                                                        <img src="Photos/scheduling-rules-availability-coverage.png" alt="Scheduling rules query for availability coverage validation">
+                                                    </button>
+                                                    <button type="button" class="slide-zoom-btn" data-lightbox-src="Photos/scheduling-rules-unavailable-block-conflict.png" aria-label="Open unavailable block conflict scheduling rule screenshot larger">
+                                                        <img src="Photos/scheduling-rules-unavailable-block-conflict.png" alt="Scheduling rules query for unavailable block conflicts">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="app-slide sql-slide">
+                                                <div class="sql-slide-grid sql-grid-2">
+                                                    <button type="button" class="slide-zoom-btn" data-lightbox-src="Photos/payment-integrity-duplicate-payment-rows.png" aria-label="Open duplicate payment rows screenshot larger">
+                                                        <img src="Photos/payment-integrity-duplicate-payment-rows.png" alt="Payment integrity query detecting duplicate payment rows">
+                                                    </button>
+                                                    <button type="button" class="slide-zoom-btn" data-lightbox-src="Photos/payment-integrity-customer-scope-mismatch.png" aria-label="Open customer scope mismatch payment screenshot larger">
+                                                        <img src="Photos/payment-integrity-customer-scope-mismatch.png" alt="Payment integrity query showing customer scope mismatch">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="app-slide sql-slide">
+                                                <div class="sql-slide-grid sql-grid-1">
+                                                    <button type="button" class="slide-zoom-btn" data-lightbox-src="Photos/workflow-validation-assignment-state-consistency.png" aria-label="Open assignment state consistency workflow screenshot larger">
+                                                        <img src="Photos/workflow-validation-assignment-state-consistency.png" alt="Workflow validation query for assignment state consistency">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="app-slide sql-slide">
+                                                <div class="sql-slide-grid sql-grid-2">
+                                                    <button type="button" class="slide-zoom-btn" data-lightbox-src="Photos/role-validation-active-users-without-roles.png" aria-label="Open active users without roles screenshot larger">
+                                                        <img src="Photos/role-validation-active-users-without-roles.png" alt="Role validation query for active users without roles">
+                                                    </button>
+                                                    <button type="button" class="slide-zoom-btn" data-lightbox-src="Photos/role-validation-stylist-role-without-profile.png" aria-label="Open stylist role without profile screenshot larger">
+                                                        <img src="Photos/role-validation-stylist-role-without-profile.png" alt="Role validation query for stylist role without profile">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="app-slider-btn next" type="button" aria-label="Next SQL validation slide" data-dir="next">&#8250;</button>
+                                    </div>
+                                </div>
                                 <p>Data quality checks and SQL assertions to detect integrity and business rule violations.</p>
+                                <div class="app-slide-caption" aria-live="polite">
+                                    <h5 data-sql-caption-title>Booking Integrity Validation</h5>
+                                    <p data-sql-caption-body>Validated booking records for relational completeness, including missing participants and missing services, to prevent partial transactions from reaching downstream scheduling and payment flows.</p>
+                                </div>
                                 <div class="stack"><span>SQL</span><span>Data QA</span><span>Validation</span></div>
                                 <div class="project-links">
                                     <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -923,6 +1035,41 @@
                         }
                         if (captionBody) {
                             captionBody.innerHTML = current.body;
+                        }
+                    }
+
+                    if (slider.getAttribute("data-caption-set") === "sql-validation") {
+                        const captionTitle = slider.closest(".project-body")?.querySelector("[data-sql-caption-title]");
+                        const captionBody = slider.closest(".project-body")?.querySelector("[data-sql-caption-body]");
+                        const copy = [
+                            {
+                                title: "Booking Integrity Validation",
+                                body: "Validated booking records for relational completeness, including missing participants and missing services, to prevent partial transactions from reaching downstream scheduling and payment flows."
+                            },
+                            {
+                                title: "Scheduling Rules Enforcement",
+                                body: "Executed rule-based checks for stylist double-booking, schedule coverage, and unavailable block conflicts to confirm calendar logic and service windows behave consistently under production-like data."
+                            },
+                            {
+                                title: "Payment Data Integrity",
+                                body: "Audited payment records for duplicate rows and customer scope mismatches to ensure transaction consistency, reliable reconciliation, and proper ownership boundaries."
+                            },
+                            {
+                                title: "Workflow State Validation",
+                                body: "Verified assignment workflow state transitions to detect inconsistent statuses and prevent downstream fulfillment or reporting errors."
+                            },
+                            {
+                                title: "Role Access Validation",
+                                body: "Checked for active users without roles and stylist roles missing profile data to enforce role-based access expectations and identity completeness."
+                            }
+                        ];
+
+                        const current = copy[index] || copy[0];
+                        if (captionTitle) {
+                            captionTitle.textContent = current.title;
+                        }
+                        if (captionBody) {
+                            captionBody.textContent = current.body;
                         }
                     }
                 }
