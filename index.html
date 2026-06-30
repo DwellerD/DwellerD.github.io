@@ -841,27 +841,36 @@
                                     </article>
 
                                     <article class="app-card">
-                                        <h4>App 2 (In Progress)</h4>
+                                        <h4>Ammons Software (In Progress)</h4>
                                         <div class="app-media">
-                                            <div class="app-slider" data-slider>
+                                            <div class="app-slider" data-slider data-caption-set="app2">
                                                 <button class="app-slider-btn prev" type="button" aria-label="Previous app 2 slide" data-dir="prev">&#8249;</button>
                                                 <div class="app-slider-track" data-track>
                                                     <div class="app-slide">
-                                                        <div class="app-slide-placeholder">Slide 1: Add app walkthrough screenshot</div>
+                                                        <video class="app-demo-video" controls playsinline preload="metadata" aria-label="Ammons Software screen recording demo">
+                                                            <source src="Photos/AmmonsSoftwareVideo.mov" type="video/mp4">
+                                                            <source src="Photos/AmmonsSoftwareVideo.mov" type="video/quicktime">
+                                                            Your browser does not support embedded video.
+                                                        </video>
                                                     </div>
                                                     <div class="app-slide">
-                                                        <div class="app-slide-placeholder">Slide 2: Add QA/test evidence screenshot</div>
+                                                        <button type="button" class="slide-zoom-btn" data-lightbox-src="Photos/AmmonsSoftwareJira.png" aria-label="Open Ammons Software Jira board image larger">
+                                                            <img src="Photos/AmmonsSoftwareJira.png" alt="Jira board planning for Ammons Software construction workflow app">
+                                                        </button>
                                                     </div>
                                                     <div class="app-slide">
-                                                        <button type="button" class="slide-zoom-btn" data-lightbox-src="Photos/App2Architecture.png" aria-label="Open app 2 architecture image larger">
-                                                            <img src="Photos/App2Architecture.png" alt="App 2 architecture overview diagram">
+                                                        <button type="button" class="slide-zoom-btn" data-lightbox-src="Photos/App2Architecture.png" aria-label="Open Ammons Software architecture image larger">
+                                                            <img src="Photos/App2Architecture.png" alt="Ammons Software architecture diagram using Next.js, TypeScript, and Firebase">
                                                         </button>
                                                     </div>
                                                 </div>
                                                 <button class="app-slider-btn next" type="button" aria-label="Next app 2 slide" data-dir="next">&#8250;</button>
                                             </div>
                                         </div>
-                                        <p>Add your second app overview here. Focus on user problem, your QA/testing contribution, and what is currently implemented.</p>
+                                        <div class="app-slide-caption" aria-live="polite">
+                                            <h5 data-slide-caption-title>Construction Workflow MVP</h5>
+                                            <p data-slide-caption-body>This software is a construction workflow app for a GC or site superintendent. It helps track trade progress, material readiness, completion proof, punch items, invoices, contracts, blueprints, plus daily project status. This demo shows the MVP in use through the main project screens.</p>
+                                        </div>
                                         <div class="project-links">
                                             <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
                                         </div>
@@ -1100,6 +1109,33 @@
                         }
                         if (captionBody) {
                             captionBody.innerHTML = current.body;
+                        }
+                    }
+
+                    if (slider.getAttribute("data-caption-set") === "app2") {
+                        const captionTitle = slider.closest(".app-card")?.querySelector("[data-slide-caption-title]");
+                        const captionBody = slider.closest(".app-card")?.querySelector("[data-slide-caption-body]");
+                        const copy = [
+                            {
+                                title: "Construction Workflow MVP",
+                                body: "This software is a construction workflow app for a GC or site superintendent. It helps track trade progress, material readiness, completion proof, punch items, invoices, contracts, blueprints, plus daily project status. This demo shows the MVP in use through the main project screens."
+                            },
+                            {
+                                title: "Sprint Planning in Jira",
+                                body: "This Jira board shows how the app was planned before coding. The work was split into focused sprint tasks based on real GC pain points such as delayed materials, incomplete trade phases, lost documents, punch items, plus progress tracking."
+                            },
+                            {
+                                title: "System Architecture",
+                                body: "This architecture diagram shows the system structure behind Ammons Software. The app uses a Next.js TypeScript frontend with Firebase for data, auth, file storage, plus workflow modules for projects, trades, materials, punch items, documents, plus dashboard reporting."
+                            }
+                        ];
+
+                        const current = copy[index] || copy[0];
+                        if (captionTitle) {
+                            captionTitle.textContent = current.title;
+                        }
+                        if (captionBody) {
+                            captionBody.textContent = current.body;
                         }
                     }
 
