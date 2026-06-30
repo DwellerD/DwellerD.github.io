@@ -224,12 +224,16 @@
         .about-text p + p { margin-top: 14px; }
 
         .skill-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 18px;
         }
 
         .skill-card {
+            flex: 1 1 240px;
+            min-width: 240px;
+            max-width: 340px;
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: var(--radius);
@@ -555,24 +559,23 @@
 
         .sql-media {
             width: 100%;
-            min-height: 360px;
-            aspect-ratio: 16 / 10;
+            height: 180px;
             margin: 0.65rem 0 0.85rem;
             border: 1px solid #cfd5de;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
-            background: #101520;
+            background: #0d1320;
         }
 
         .sql-slide {
             background: #0f1624;
-            padding: 0.6rem;
+            padding: 0.45rem;
             box-sizing: border-box;
         }
 
         .sql-slide-grid {
             display: grid;
-            gap: 0.55rem;
+            gap: 0.45rem;
             width: 100%;
             height: 100%;
             grid-auto-rows: 1fr;
@@ -624,20 +627,22 @@
         }
 
         .stack {
-            margin: 0.6rem 0;
+            margin: 0.9rem 0 0;
             display: flex;
             flex-wrap: wrap;
             gap: 0.4rem;
         }
 
         .stack span {
-            border: 1px solid #DBE7FF;
-            border-radius: 999px;
-            padding: 0.28rem 0.7rem;
-            font-size: 0.74rem;
-            font-weight: 600;
-            color: #1d4ed8;
-            background: var(--chip-blue);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 0.26rem 0.55rem;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--muted);
+            background: var(--chip-bg);
         }
 
         .project-links {
@@ -806,7 +811,7 @@
                     <div class="identity">
                         <h1>Dallin Weller</h1>
                         <p class="role">QA Focused Software Tester | IT Background | Automation and SQL</p>
-                        <p class="hero-intro">I build and test my own software projects to practice real quality assurance: test planning, SQL data validation, API testing, automation, defect documentation, and release readiness. My IT support background keeps me grounded in reliability and process.</p>
+                        <p class="hero-intro">I like figuring out why software breaks, how workflows fail, and what can be tested before problems reach users. My background is in IT support, asset coordination, workflow validation, and hands on software testing. I am now building a QA portfolio around real personal projects where I practice test planning, SQL data validation, API testing, automation, defect documentation, and release readiness. I work hard, learn quickly, and care about understanding the systems I test from the user interface down to the database.</p>
                         <div class="hero-chips">
                             <span>Test Automation</span>
                             <span>SQL Validation</span>
@@ -835,8 +840,9 @@
                     <h2>IT Background Meets Software QA</h2>
                 </div>
                 <div class="about-text">
-                    <p>I started in IT support and asset coordination, where I built a foundation in troubleshooting, documentation, organization, system reliability, and process discipline. My Epic TDR testing experience strengthened my ability to validate workflows, execute functional testing, communicate defects, and think through software from both a user and operational perspective.</p>
-                    <p>Today I am focused on Software QA and test automation through hands on project work. I build and test my own applications, then create QA artifacts around them including Jira boards, architecture diagrams, SQL validation checks, automation tests, bug reports, API test ideas, and release readiness documentation.</p>
+                    <p>I started in IT support and asset coordination, where I learned how important reliability, documentation, organization, and clear communication are when people depend on systems working correctly. That experience gave me a practical foundation for troubleshooting issues, following processes, supporting users, and thinking carefully about how work moves through a system.</p>
+                    <p>My Epic TDR testing experience pushed me further toward Software QA. It helped me practice validating workflows, executing functional tests, documenting defects, and looking at software from both a user perspective and an operational perspective.</p>
+                    <p>Today, I am focused on growing into a QA Engineer or automation focused testing role. My portfolio is built around personal software projects where I can plan features, test workflows, validate database rules, document risks, and create practical QA artifacts. Outside of software, I like playing guitar and piano, staying active, and building creative projects that help me keep learning by doing.</p>
                 </div>
             </div>
         </section>
@@ -948,7 +954,7 @@
 
                                     <article class="app-card">
                                         <p class="category-label">Software Case Study</p>
-                                        <h3>Ammons Construction Workflow App</h3>
+                                        <h3>Construction Coordinator</h3>
                                         <div class="chips" style="margin-bottom: 14px;">
                                             <span class="chip">Next.js</span>
                                             <span class="chip">TypeScript</span>
