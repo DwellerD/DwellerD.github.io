@@ -864,32 +864,6 @@
                         </div>
 
                         <div class="project">
-                            <div class="project-shot">Project screenshot<br>placeholder</div>
-                            <div class="project-body">
-                                <strong>Playwright Automation Framework</strong>
-                                <p>Reusable E2E automation framework with maintainable page modeling and reporting.</p>
-                                <div class="stack"><span>Playwright</span><span>TypeScript</span><span>GitHub Actions</span></div>
-                                <div class="project-links">
-                                    <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
-                                    <a href="#">Live Demo</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="project">
-                            <div class="project-shot">Project screenshot<br>placeholder</div>
-                            <div class="project-body">
-                                <strong>API Testing Suite</strong>
-                                <p>Automated API validation for endpoint responses, error handling, and regression checks.</p>
-                                <div class="stack"><span>Postman</span><span>JavaScript</span><span>REST</span></div>
-                                <div class="project-links">
-                                    <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
-                                    <a href="#">Live Demo</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="project">
                             <div class="project-body">
                                 <strong>SQL Data Validation Project</strong>
                                 <div class="sql-media">
@@ -957,6 +931,70 @@
                                     <p data-sql-caption-body>Validated booking records for relational completeness, including missing participants and missing services, to prevent partial transactions from reaching downstream scheduling and payment flows.</p>
                                 </div>
                                 <div class="stack"><span>SQL</span><span>Data QA</span><span>Validation</span></div>
+                                <div class="project-links">
+                                    <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
+                                    <a href="#">Live Demo</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project">
+                            <div class="project-body">
+                                <strong>Playwright Automation Framework</strong>
+                                <div class="sql-media">
+                                    <div class="app-slider" data-slider data-caption-set="playwright">
+                                        <button class="app-slider-btn prev" type="button" aria-label="Previous Playwright slide" data-dir="prev">&#8249;</button>
+                                        <div class="app-slider-track" data-track>
+                                            <div class="app-slide sql-slide">
+                                                <div class="sql-slide-grid sql-grid-1">
+                                                    <button type="button" class="slide-zoom-btn" data-lightbox-src="Photos/Material-Delay-Test-SC.png" aria-label="Open material delay test screenshot larger">
+                                                        <img src="Photos/Material-Delay-Test-SC.png" alt="Playwright end-to-end test verifying a material delay blocks a trade phase">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="app-slide sql-slide">
+                                                <div class="sql-slide-grid sql-grid-1">
+                                                    <button type="button" class="slide-zoom-btn" data-lightbox-src="Photos/Completion-Proof-Test-SC.png" aria-label="Open completion proof test screenshot larger">
+                                                        <img src="Photos/Completion-Proof-Test-SC.png" alt="Playwright end-to-end test for the completion proof and inspection workflow">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="app-slide sql-slide">
+                                                <div class="sql-slide-grid sql-grid-1">
+                                                    <button type="button" class="slide-zoom-btn" data-lightbox-src="Photos/Doc-Vault-Test-SC.png" aria-label="Open document vault test screenshot larger">
+                                                        <img src="Photos/Doc-Vault-Test-SC.png" alt="Playwright end-to-end test for the Document Vault blueprint workflow">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="app-slide sql-slide">
+                                                <div class="sql-slide-grid sql-grid-1">
+                                                    <button type="button" class="slide-zoom-btn" data-lightbox-src="Photos/Punch-Lifecycle-Test-SC.png" aria-label="Open punch lifecycle test screenshot larger">
+                                                        <img src="Photos/Punch-Lifecycle-Test-SC.png" alt="Playwright end-to-end test covering the punch item lifecycle">
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="app-slider-btn next" type="button" aria-label="Next Playwright slide" data-dir="next">&#8250;</button>
+                                    </div>
+                                </div>
+                                <p>Reusable E2E automation framework with maintainable page modeling and reporting.</p>
+                                <div class="app-slide-caption" aria-live="polite">
+                                    <h5 data-pw-caption-title>Material Delay Enforcement</h5>
+                                    <p data-pw-caption-body>Verified that a logged material delay blocks the dependent trade phase from progressing, confirming scheduling guardrails stop work from starting before required materials are available.</p>
+                                </div>
+                                <div class="stack"><span>Playwright</span><span>TypeScript</span><span>GitHub Actions</span></div>
+                                <div class="project-links">
+                                    <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="project">
+                            <div class="project-shot">Project screenshot<br>placeholder</div>
+                            <div class="project-body">
+                                <strong>API Testing Suite</strong>
+                                <p>Automated API validation for endpoint responses, error handling, and regression checks.</p>
+                                <div class="stack"><span>Postman</span><span>JavaScript</span><span>REST</span></div>
                                 <div class="project-links">
                                     <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
                                     <a href="#">Live Demo</a>
@@ -1081,6 +1119,37 @@
                             {
                                 title: "Role Access Validation",
                                 body: "Checked for active users without roles and stylist roles missing profile data to enforce role-based access expectations and identity completeness."
+                            }
+                        ];
+
+                        const current = copy[index] || copy[0];
+                        if (captionTitle) {
+                            captionTitle.textContent = current.title;
+                        }
+                        if (captionBody) {
+                            captionBody.textContent = current.body;
+                        }
+                    }
+
+                    if (slider.getAttribute("data-caption-set") === "playwright") {
+                        const captionTitle = slider.closest(".project-body")?.querySelector("[data-pw-caption-title]");
+                        const captionBody = slider.closest(".project-body")?.querySelector("[data-pw-caption-body]");
+                        const copy = [
+                            {
+                                title: "Material Delay Enforcement",
+                                body: "Verified that a logged material delay blocks the dependent trade phase from progressing, confirming scheduling guardrails stop work from starting before required materials are available."
+                            },
+                            {
+                                title: "Completion Proof & Inspection",
+                                body: "Exercised the completion proof and inspection workflow end to end, confirming submitted proof advances a task into inspection and that approval and rejection paths update status correctly."
+                            },
+                            {
+                                title: "Document Vault Blueprints",
+                                body: "Validated the Document Vault blueprint workflow, confirming blueprints upload, version, and surface to the correct roles so teams always reference current documents."
+                            },
+                            {
+                                title: "Punch Item Lifecycle",
+                                body: "Covered the full punch item lifecycle from creation through assignment, resolution, and verification, confirming each state transition and closeout behaves as expected."
                             }
                         ];
 
