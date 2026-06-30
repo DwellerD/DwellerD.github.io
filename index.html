@@ -11,54 +11,89 @@
     <link href="https://fonts.googleapis.com/css2?family=Jura:wght@500;700&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --page-bg: #b7a0b3;
-            --frame-bg: #f5f5f5;
-            --hero-bg: #303138;
-            --hero-soft: #3f4048;
-            --text-main: #141518;
-            --text-soft: #5f6570;
-            --text-light: #dde1ea;
-            --line: #dedee2;
-            --accent: #11151f;
-            --accent-soft: #50535f;
-            --panel: #ffffff;
-            --shadow: 0 24px 40px rgba(20, 22, 32, 0.16);
+            --navy: #0F172A;
+            --slate: #1E293B;
+            --page: #F8FAFC;
+            --card: #FFFFFF;
+            --border: #E2E8F0;
+            --text: #0F172A;
+            --muted: #64748B;
+            --blue: #2563EB;
+            --cyan: #38BDF8;
+            --green: #22C55E;
+            --amber: #F59E0B;
+            --red: #EF4444;
+            --chip-bg: #F1F5F9;
+            --chip-blue: #EFF6FF;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --container: 1160px;
+            --shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.06);
+            --shadow-hover: 0 6px 14px rgba(15, 23, 42, 0.08), 0 18px 38px rgba(15, 23, 42, 0.12);
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             margin: 0;
             font-family: "Manrope", "Segoe UI", sans-serif;
-            background: var(--frame-bg);
-            color: var(--text-main);
-            line-height: 1.55;
+            background: var(--page);
+            color: var(--text);
+            line-height: 1.6;
         }
+
+        img { max-width: 100%; }
 
         .site-frame {
             width: 100%;
             min-height: 100vh;
-            margin: 0;
-            background: var(--frame-bg);
-            border: 0;
-            box-shadow: none;
-            overflow: hidden;
+            background: var(--page);
         }
+
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section { padding: 72px 0; }
+        .section-alt { background: var(--card); }
+
+        .section-head { max-width: 720px; margin: 0 0 34px; }
+
+        .eyebrow {
+            margin: 0 0 8px;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--blue);
+        }
+
+        .section-head h2 {
+            margin: 0;
+            font-family: "Jura", sans-serif;
+            font-size: clamp(1.6rem, 3.4vw, 2.1rem);
+            letter-spacing: 0.01em;
+        }
+
+        .section-head p { margin: 10px 0 0; color: var(--muted); }
 
         .hero {
             position: relative;
-            padding: 1.1rem 2.4rem 2.1rem;
-            color: var(--text-light);
+            color: #E2E8F0;
             background:
-                linear-gradient(rgba(30, 31, 38, 0.68), rgba(30, 31, 38, 0.8)),
-                radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.08), transparent 45%),
-                linear-gradient(120deg, var(--hero-bg), var(--hero-soft));
+                radial-gradient(circle at 88% -10%, rgba(56, 189, 248, 0.18), transparent 42%),
+                radial-gradient(circle at -5% 120%, rgba(37, 99, 235, 0.22), transparent 42%),
+                linear-gradient(160deg, var(--navy), var(--slate));
+        }
+
+        .hero-inner {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 26px 24px 76px;
         }
 
         .hero-nav {
@@ -66,47 +101,34 @@
             gap: 1.4rem;
             flex-wrap: wrap;
             font-size: 0.72rem;
-            letter-spacing: 0.11em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            margin-bottom: 54px;
         }
 
         .hero-nav a {
-            color: #f0f2f7;
+            color: #CBD5E1;
             text-decoration: none;
-            opacity: 0.85;
-            transition: opacity 180ms ease;
+            transition: color 160ms ease;
         }
 
-        .hero-nav a:hover {
-            opacity: 1;
-        }
+        .hero-nav a:hover { color: #ffffff; }
 
         .hero-grid {
             display: grid;
-            grid-template-columns: 170px 1fr;
-            gap: 1.8rem;
-            align-items: start;
+            grid-template-columns: 210px 1fr;
+            gap: 44px;
+            align-items: center;
         }
 
         .photo-slot {
-            width: 170px;
-            height: 190px;
-            margin-top: 0.8rem;
+            width: 210px;
+            height: 230px;
             position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.32);
-            border-radius: 2px;
-            background:
-                linear-gradient(160deg, rgba(255, 255, 255, 0.1), rgba(10, 12, 20, 0.45)),
-                repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.08) 0 10px, rgba(255, 255, 255, 0.02) 10px 20px);
-            display: grid;
-            place-items: center;
-            font-size: 0.77rem;
-            text-transform: uppercase;
-            letter-spacing: 0.09em;
-            color: #eef2fb;
-            text-align: center;
-            padding: 0;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: 0 20px 44px rgba(0, 0, 0, 0.4);
+            background: #0b1220;
             overflow: hidden;
         }
 
@@ -118,199 +140,241 @@
             object-fit: cover;
             object-position: 50% 30%;
             display: block;
-            filter: grayscale(8%) contrast(1.02) saturate(0.95);
         }
 
         .identity h1 {
             margin: 0;
-            font-family: "Jura", "Manrope", sans-serif;
-            font-size: clamp(2rem, 6.2vw, 2.8rem);
-            line-height: 1.04;
+            font-family: "Jura", sans-serif;
+            font-size: clamp(2.2rem, 6vw, 3rem);
+            line-height: 1.05;
             color: #ffffff;
         }
 
         .identity .role {
-            margin: 0.2rem 0 1rem;
-            font-size: 0.9rem;
-            text-transform: none;
-            letter-spacing: 0.06em;
-            color: #cdd4e3;
+            margin: 10px 0 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            color: var(--cyan);
         }
 
-        .meta-list {
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            display: grid;
-            gap: 0.4rem;
-            max-width: 680px;
+        .hero-intro {
+            max-width: 640px;
+            margin: 0 0 20px;
+            color: #CBD5E1;
+            font-size: 1rem;
         }
 
-        .meta-list li {
-            display: grid;
-            grid-template-columns: 95px 1fr;
-            gap: 0.9rem;
+        .hero-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 0 0 24px;
+        }
+
+        .hero-chips span {
+            font-size: 0.74rem;
+            font-weight: 600;
+            padding: 6px 13px;
+            border-radius: 999px;
+            color: #E2E8F0;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin: 20px 0 0;
             font-size: 0.84rem;
-            color: #f0f4ff;
+            color: #94A3B8;
         }
 
-        .meta-key {
-            opacity: 0.8;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            font-size: 0.72rem;
-        }
+        .hero-meta a { color: #CBD5E1; text-decoration: none; }
+        .hero-meta a:hover { color: #ffffff; }
 
-        .meta-value a {
-            color: #ffffff;
+        .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 999px;
+            padding: 11px 20px;
             text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: transform 140ms ease, box-shadow 140ms ease, background 140ms ease;
         }
 
-        .meta-value a:hover {
-            text-decoration: underline;
+        .btn-primary { background: var(--blue); color: #ffffff; }
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+            box-shadow: 0 10px 22px rgba(37, 99, 235, 0.34);
         }
 
-        .content {
-            background: var(--panel);
-            padding: 2.7rem 2.4rem 2.3rem;
+        .btn-ghost { background: transparent; color: #E2E8F0; border-color: rgba(255, 255, 255, 0.28); }
+        .btn-ghost:hover { background: rgba(255, 255, 255, 0.08); }
+
+        .about-text p { margin: 0; max-width: 760px; color: #334155; }
+        .about-text p + p { margin-top: 14px; }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
         }
 
-        .intro {
-            border-bottom: 1px solid var(--line);
-            padding-bottom: 1.5rem;
-            margin-bottom: 1.7rem;
+        .skill-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px;
+            box-shadow: var(--shadow);
         }
 
-        .intro h2 {
-            margin: 0;
+        .skill-card h3 {
+            margin: 0 0 12px;
             font-family: "Jura", sans-serif;
-            font-size: 2.1rem;
+            font-size: 1rem;
             letter-spacing: 0.02em;
         }
 
-        .intro p {
-            max-width: 880px;
-            color: var(--text-soft);
-            margin: 0.55rem 0 0;
-        }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 
-        .btn-row {
-            margin-top: 1rem;
-            display: flex;
-            gap: 0.65rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-block;
+        .chip {
+            font-size: 0.76rem;
+            font-weight: 600;
+            padding: 6px 12px;
             border-radius: 999px;
-            padding: 0.52rem 0.92rem;
-            text-decoration: none;
-            border: 1px solid var(--accent);
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 0.03em;
+            background: var(--chip-blue);
+            color: #1d4ed8;
+            border: 1px solid #DBE7FF;
         }
 
-        .btn-dark {
-            background: var(--accent);
-            color: #ffffff;
-        }
-
-        .btn-ghost {
-            color: var(--accent);
-        }
-
-        .section-grid {
-            display: grid;
-            gap: 1rem;
-            grid-template-columns: repeat(12, 1fr);
-        }
-
-        .panel {
-            grid-column: span 6;
-            border: 1px solid var(--line);
-            background: #fcfcfd;
-            padding: 1rem;
-        }
-
-        .panel h3 {
-            margin-top: 0;
-            font-family: "Jura", sans-serif;
-            font-size: 1.3rem;
-        }
-
-        .panel ul {
-            margin: 0.4rem 0 0;
-            padding-left: 1.1rem;
-        }
-
-        .panel p {
-            margin: 0.4rem 0 0;
-            color: var(--text-soft);
-        }
-
-        .panel.wide {
-            grid-column: span 12;
-        }
-
-        .projects-grid {
-            display: grid;
-            gap: 1rem;
-            grid-template-columns: repeat(12, 1fr);
-            margin-top: 0.9rem;
-        }
-
-        .project {
-            grid-column: span 6;
-            border: 1px solid var(--line);
-            background: #ffffff;
-        }
-
-        .project-shot {
-            min-height: 130px;
-            display: grid;
-            place-items: center;
-            text-align: center;
-            font-size: 0.78rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: #2c3039;
-            border-bottom: 1px solid var(--line);
-            background: linear-gradient(120deg, #f4f4f7, #e7e8ed);
-        }
-
-        .project-shot video {
-            width: 100%;
-            height: 100%;
-            min-height: 130px;
-            object-fit: contain;
-            display: block;
-            background: #161a24;
-        }
-
-        .apps-project {
-            grid-column: span 12;
+        .chip-muted {
+            background: var(--chip-bg);
+            color: var(--slate);
+            border-color: var(--border);
         }
 
         .apps-grid {
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 1rem;
-            margin-top: 0.8rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
         }
 
-        .app-card {
-            grid-column: span 6;
-            border: 1px solid var(--line);
-            background: #fbfcff;
-            padding: 0.95rem;
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
         }
 
-        .app-card h4 {
-            margin: 0 0 0.5rem;
-            font-size: 1rem;
+        .app-card,
+        .project {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 140ms ease, box-shadow 140ms ease;
         }
+
+        .app-card { padding: 24px; }
+
+        .app-card:hover,
+        .project:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .category-label {
+            margin: 0 0 6px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--blue);
+        }
+
+        .app-card h3,
+        .project-body h3 {
+            margin: 0 0 14px;
+            font-family: "Jura", sans-serif;
+            font-size: 1.25rem;
+        }
+
+        .project-desc { margin: 0; color: #475569; }
+
+        .timeline { display: grid; gap: 16px; }
+
+        .timeline-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--blue);
+            border-radius: var(--radius);
+            padding: 20px 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-item .when {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .timeline-item h3 { margin: 6px 0 0; font-size: 1.05rem; }
+        .timeline-item p { margin: 8px 0 0; color: #475569; }
+
+        .callout {
+            background: linear-gradient(180deg, #F8FAFC, #EFF6FF);
+            border: 1px solid #DBE7FF;
+            border-left: 4px solid var(--blue);
+            border-radius: var(--radius);
+            padding: 26px 28px;
+            box-shadow: var(--shadow);
+        }
+
+        .callout h3 {
+            margin: 0 0 8px;
+            font-family: "Jura", sans-serif;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .callout .badge {
+            font-size: 0.64rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: #1d4ed8;
+            background: #DBE7FF;
+            border-radius: 999px;
+            padding: 4px 10px;
+        }
+
+        .callout p { margin: 0; max-width: 840px; color: #334155; }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
+        }
+
+        .card ul { margin: 0; padding-left: 1.1rem; }
+        .card li { margin: 4px 0; color: #334155; }
 
         .app-media {
             width: 100%;
@@ -467,12 +531,12 @@
         }
 
         .app-slide-caption {
-            margin: 0.15rem 0 0.7rem;
-            padding: 0.75rem 0.85rem;
-            border: 1px solid #d9e0ea;
-            border-left: 4px solid #245fa8;
-            border-radius: 8px;
-            background: linear-gradient(180deg, #f7faff, #f1f5fc);
+            margin: 0.6rem 0 0.7rem;
+            padding: 0.85rem 0.95rem;
+            border: 1px solid #DBE7FF;
+            border-left: 4px solid var(--blue);
+            border-radius: var(--radius-sm);
+            background: linear-gradient(180deg, #F8FAFC, #EFF6FF);
         }
 
         .app-slide-caption h5 {
@@ -556,7 +620,7 @@
         }
 
         .project-body {
-            padding: 0.95rem;
+            padding: 24px;
         }
 
         .stack {
@@ -567,11 +631,13 @@
         }
 
         .stack span {
-            border: 1px solid #ccd1da;
+            border: 1px solid #DBE7FF;
             border-radius: 999px;
-            padding: 0.2rem 0.55rem;
+            padding: 0.28rem 0.7rem;
             font-size: 0.74rem;
-            background: #f4f7fb;
+            font-weight: 600;
+            color: #1d4ed8;
+            background: var(--chip-blue);
         }
 
         .project-links {
@@ -579,44 +645,61 @@
             gap: 0.55rem;
             flex-wrap: wrap;
             font-size: 0.82rem;
+            margin-top: 1rem;
         }
 
         .project-links a {
-            color: #1a2230;
+            color: var(--blue);
+            font-weight: 700;
             text-decoration: none;
-            border: 1px solid #d0d5de;
-            padding: 0.22rem 0.6rem;
+            border: 1px solid #DBE7FF;
+            background: var(--chip-blue);
+            padding: 0.4rem 0.85rem;
             border-radius: 999px;
+            transition: background 140ms ease;
         }
 
         .project-links a:hover {
-            text-decoration: underline;
+            background: #DBE7FF;
         }
 
-        .footer-contact {
-            margin-top: 1.6rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--line);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            font-size: 0.9rem;
+        .site-footer {
+            background:
+                radial-gradient(circle at 90% -20%, rgba(56, 189, 248, 0.16), transparent 45%),
+                linear-gradient(160deg, var(--navy), var(--slate));
+            color: #CBD5E1;
         }
 
-        .footer-contact a {
-            color: #131722;
+        .site-footer h2 {
+            margin: 0 0 8px;
+            font-family: "Jura", sans-serif;
+            font-size: clamp(1.5rem, 3vw, 1.9rem);
+            color: #ffffff;
+        }
+
+        .site-footer p { margin: 0 0 22px; color: #94A3B8; max-width: 560px; }
+
+        .footer-links { display: flex; flex-wrap: wrap; gap: 12px; }
+
+        .footer-links a {
+            color: #E2E8F0;
             text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            padding: 10px 18px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background 140ms ease;
         }
 
-        .footer-contact a:hover {
-            text-decoration: underline;
-        }
+        .footer-links a:hover { background: rgba(255, 255, 255, 0.1); }
 
         .dino-panel {
-            margin-top: 1rem;
-            border: 1px solid var(--line);
-            background: #fafafa;
-            padding: 1rem;
+            border: 1px solid var(--border);
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: var(--shadow);
         }
 
         .dino-panel h3 {
@@ -679,139 +762,156 @@
             background: #eef1f8;
         }
 
-        @media (max-width: 920px) {
-            .hero {
-                padding: 1rem 1.2rem 1.5rem;
-            }
+        @media (max-width: 860px) {
+            .section { padding: 48px 0; }
+
+            .hero-inner { padding: 22px 20px 56px; }
+            .hero-nav { margin-bottom: 36px; }
 
             .hero-grid {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: 24px;
+                align-items: start;
             }
 
             .photo-slot {
-                width: 100%;
-                max-width: 280px;
-                height: 200px;
-                margin-top: 0;
+                width: 160px;
+                height: 180px;
             }
 
-            .content {
-                padding: 1.3rem 1.2rem 1.5rem;
-            }
+            .container { padding: 0 20px; }
 
-            .panel,
-            .project,
-            .panel.wide {
-                grid-column: span 12;
-            }
-
-            .app-card {
-                grid-column: span 12;
-            }
-
-            .meta-list li {
-                grid-template-columns: 80px 1fr;
-            }
-
-            .dino-hud {
-                align-items: flex-start;
-            }
+            .dino-hud { align-items: flex-start; }
         }
     </style>
 </head>
 <body>
     <main class="site-frame">
         <header class="hero" id="home">
-            <nav class="hero-nav" aria-label="Main navigation">
-                <a href="#home">Hello</a>
-                <a href="#skills">Skills</a>
-                <a href="#resume">Resume</a>
-                <a href="#projects">Portfolio</a>
-                <a href="#experience">Experience</a>
-                <a href="#contact">Contact</a>
-            </nav>
+            <div class="hero-inner">
+                <nav class="hero-nav" aria-label="Main navigation">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#contact">Contact</a>
+                </nav>
 
-            <div class="hero-grid">
-                <div class="photo-slot">
-                    <img src="Photos/ProfilePic.jpg" alt="Portrait of Dallin Weller">
-                </div>
+                <div class="hero-grid">
+                    <div class="photo-slot">
+                        <img src="Photos/ProfilePic.jpg" alt="Portrait of Dallin Weller">
+                    </div>
 
-                <div class="identity">
-                    <h1>Dallin Weller</h1>
-                    <p class="role">QA Focused Software Tester | IT Background | Automation + SQL</p>
-                    <ul class="meta-list">
-                        <li>
-                            <span class="meta-key">Focus</span>
-                            <span class="meta-value">Test Automation | SQL Validation | API Testing | Jira | IT Support</span>
-                        </li>
-                        <li>
-                            <span class="meta-key">Phone</span>
-                            <span class="meta-value"><a href="tel:+18013722325">(801) 372 2325</a></span>
-                        </li>
-                        <li>
-                            <span class="meta-key">Email</span>
-                            <span class="meta-value"><a href="mailto:weller.dallin@gmail.com">weller.dallin@gmail.com</a></span>
-                        </li>
-                        <li>
-                            <span class="meta-key">Location</span>
-                            <span class="meta-value">Utah, United States</span>
-                        </li>
-                    </ul>
+                    <div class="identity">
+                        <h1>Dallin Weller</h1>
+                        <p class="role">QA Focused Software Tester | IT Background | Automation and SQL</p>
+                        <p class="hero-intro">I build and test my own software projects to practice real quality assurance: test planning, SQL data validation, API testing, automation, defect documentation, and release readiness. My IT support background keeps me grounded in reliability and process.</p>
+                        <div class="hero-chips">
+                            <span>Test Automation</span>
+                            <span>SQL Validation</span>
+                            <span>API Testing</span>
+                            <span>Jira</span>
+                            <span>IT Support</span>
+                        </div>
+                        <div class="btn-row">
+                            <a class="btn btn-primary" href="#" aria-label="Add your resume file URL here">Download CV</a>
+                            <a class="btn btn-ghost" href="#portfolio">View Projects</a>
+                        </div>
+                        <div class="hero-meta">
+                            <span>Utah, United States</span>
+                            <a href="tel:+18013722325">(801) 372 2325</a>
+                            <a href="mailto:weller.dallin@gmail.com">weller.dallin@gmail.com</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </header>
 
-        <section class="content">
-            <div class="intro">
-                <h2>Hi</h2>
-                <p>I'm a QA focused software builder with experience in IT support, asset coordination, workflow validation, and hands on software testing. I use personal software projects to practice test planning, SQL data validation, API testing, automation, defect documentation, and release readiness workflows.</p>
-                <p>I use AI assisted development as a learning and productivity tool, but I focus on understanding, reviewing, testing, and validating the work so I can explain what was built, why it matters, and how quality risks were addressed.</p>
-                <div class="btn-row" id="resume">
-                    <a class="btn btn-dark" href="#" aria-label="Add your resume file URL here">Download CV</a>
-                    <a class="btn btn-ghost" href="#projects">View Projects</a>
+        <section class="section section-alt" id="about">
+            <div class="container">
+                <div class="section-head">
+                    <p class="eyebrow">About Me</p>
+                    <h2>IT Background Meets Software QA</h2>
+                </div>
+                <div class="about-text">
+                    <p>I started in IT support and asset coordination, where I built a foundation in troubleshooting, documentation, organization, system reliability, and process discipline. My Epic TDR testing experience strengthened my ability to validate workflows, execute functional testing, communicate defects, and think through software from both a user and operational perspective.</p>
+                    <p>Today I am focused on Software QA and test automation through hands on project work. I build and test my own applications, then create QA artifacts around them including Jira boards, architecture diagrams, SQL validation checks, automation tests, bug reports, API test ideas, and release readiness documentation.</p>
                 </div>
             </div>
+        </section>
 
-            <div class="section-grid">
-                <article class="panel wide">
-                    <h3>About Me</h3>
-                    <p>I started in IT support and asset coordination, where I built a foundation in troubleshooting, documentation, organization, system reliability, and process discipline. My Epic TDR testing experience strengthened my ability to validate workflows, execute functional testing, communicate defects, and think through software from both a user and operational perspective.</p>
-                    <p>Today, I am focused on Software QA and test automation through hands on project work. I build and test my own applications, then create QA artifacts around them including Jira boards, architecture diagrams, SQL validation checks, automation tests, bug reports, API test ideas, and release readiness documentation.</p>
-                    <p>I also use AI assisted development as part of my learning process. I use it to explore tools, generate starting points, troubleshoot issues, and move faster, but I take responsibility for reviewing the output, testing the behavior, validating the results, and documenting what I learned.</p>
-                    <p class="ai-note"><strong>AI Assisted Workflow:</strong> I use AI tools to support learning, planning, debugging, and implementation. All portfolio work is reviewed, tested, validated, and documented by me so I can explain the purpose, risks, and quality decisions behind each artifact.</p>
-                </article>
+        <section class="section" id="skills">
+            <div class="container">
+                <div class="section-head">
+                    <p class="eyebrow">Skills Snapshot</p>
+                    <h2>Working Knowledge</h2>
+                    <p>An honest view of the tools and practices I work with as I grow into a QA role.</p>
+                </div>
+                <div class="skill-grid">
+                    <div class="skill-card">
+                        <h3>Testing</h3>
+                        <div class="chips">
+                            <span class="chip">Functional</span>
+                            <span class="chip">Regression</span>
+                            <span class="chip">Workflow Validation</span>
+                            <span class="chip">Test Planning</span>
+                            <span class="chip">Bug Reporting</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Automation</h3>
+                        <div class="chips">
+                            <span class="chip">Playwright</span>
+                            <span class="chip">Postman</span>
+                            <span class="chip">GitHub Actions</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Data and Backend</h3>
+                        <div class="chips">
+                            <span class="chip">SQL</span>
+                            <span class="chip">Supabase</span>
+                            <span class="chip">Firebase</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Tools</h3>
+                        <div class="chips">
+                            <span class="chip">Jira</span>
+                            <span class="chip">GitHub</span>
+                            <span class="chip">JavaScript</span>
+                            <span class="chip">TypeScript</span>
+                        </div>
+                    </div>
+                    <div class="skill-card">
+                        <h3>IT and Workflow Experience</h3>
+                        <div class="chips">
+                            <span class="chip chip-muted">IT Support</span>
+                            <span class="chip chip-muted">Asset Coordination</span>
+                            <span class="chip chip-muted">Process Discipline</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                <article class="panel" id="skills">
-                    <h3>Skills</h3>
-                    <p>Working knowledge:</p>
-                    <ul>
-                        <li>JavaScript, TypeScript, SQL</li>
-                        <li>Playwright, Postman, Supabase</li>
-                        <li>Jira, GitHub, GitHub Actions</li>
-                        <li>Functional testing, regression testing, workflow validation</li>
-                        <li>Test planning, bug reporting, and quality documentation</li>
-                    </ul>
-                </article>
-
-                <article class="panel" id="experience">
-                    <h3>Experience</h3>
-                    <ul>
-                        <li>IT Asset Coordinator: asset management and process improvement</li>
-                        <li>Epic TDR Testing: functional testing and defect documentation</li>
-                        <li>Personal project testing and quality validation</li>
-                    </ul>
-                </article>
-
-                <article class="panel wide" id="projects">
-                    <h3>Featured Projects</h3>
-                    <div class="projects-grid">
-                        <div class="project apps-project">
-                            <div class="project-body">
-                                <strong>Apps I Have Been Working On</strong>
-                                <div class="apps-grid">
-                                    <article class="app-card">
-                                        <h4>Hair App Marketplace (Flutter + Supabase)</h4>
+        <section class="section section-alt" id="portfolio">
+            <div class="container">
+                <div class="section-head">
+                    <p class="eyebrow">Project Based QA Portfolio</p>
+                    <h2>Software Case Studies</h2>
+                    <p>The apps below show what I build. The QA artifacts further down show how I test and validate software.</p>
+                </div>
+                <div class="apps-grid">
+                    <article class="app-card">
+                        <p class="category-label">Software Case Study</p>
+                        <h3>Hair App Marketplace</h3>
+                        <div class="chips" style="margin-bottom: 14px;">
+                            <span class="chip">Flutter</span>
+                            <span class="chip">Supabase</span>
+                            <span class="chip">Stripe</span>
+                        </div>
                                         <div class="app-media">
                                             <div class="app-slider" data-slider data-caption-set="hair-app">
                                                 <button class="app-slider-btn prev" type="button" aria-label="Previous app slide" data-dir="prev">&#8249;</button>
@@ -847,7 +947,13 @@
                                     </article>
 
                                     <article class="app-card">
-                                        <h4>Ammons Software (In Progress)</h4>
+                                        <p class="category-label">Software Case Study</p>
+                                        <h3>Ammons Construction Workflow App</h3>
+                                        <div class="chips" style="margin-bottom: 14px;">
+                                            <span class="chip">Next.js</span>
+                                            <span class="chip">TypeScript</span>
+                                            <span class="chip">Firebase</span>
+                                        </div>
                                         <div class="app-media">
                                             <div class="app-slider" data-slider data-caption-set="app2">
                                                 <button class="app-slider-btn prev" type="button" aria-label="Previous app 2 slide" data-dir="prev">&#8249;</button>
@@ -877,16 +983,21 @@
                                             <p data-slide-caption-body>This software is a construction workflow app for a GC or site superintendent. It helps track trade progress, material readiness, completion proof, punch items, invoices, contracts, blueprints, plus daily project status. This demo shows the MVP in use through the main project screens.</p>
                                         </div>
                                         <div class="project-links">
-                                            <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
+                                            <a href="https://github.com/DwellerD/AmmonsSoftware.git" target="_blank" rel="noopener noreferrer">GitHub Repo</a>
                                         </div>
                                     </article>
-                                </div>
-                            </div>
-                        </div>
+                </div>
 
+                <div class="section-head" style="margin-top: 56px;">
+                    <p class="eyebrow">QA Artifacts</p>
+                    <h2>How I Test and Validate</h2>
+                    <p>Testing work I build around my projects to practice real quality assurance.</p>
+                </div>
+                <div class="projects-grid">
                         <div class="project">
                             <div class="project-body">
-                                <strong>SQL Data Validation Project</strong>
+                                <p class="category-label">QA Artifact</p>
+                                <h3>SQL Data Validation</h3>
                                 <div class="sql-media">
                                     <div class="app-slider" data-slider data-caption-set="sql-validation">
                                         <button class="app-slider-btn prev" type="button" aria-label="Previous SQL validation slide" data-dir="prev">&#8249;</button>
@@ -945,7 +1056,7 @@
                                         <button class="app-slider-btn next" type="button" aria-label="Next SQL validation slide" data-dir="next">&#8250;</button>
                                     </div>
                                 </div>
-                                <p>Data quality checks and SQL assertions to detect integrity and business rule violations.</p>
+                                <p class="project-desc">Data quality checks and SQL assertions to detect integrity and business rule violations.</p>
                                 <div class="app-slide-caption" aria-live="polite">
                                     <h5 data-sql-caption-title>Booking Integrity Validation</h5>
                                     <p data-sql-caption-body>Validated booking records for relational completeness, including missing participants and missing services, to prevent partial transactions from reaching downstream scheduling and payment flows.</p>
@@ -954,14 +1065,14 @@
                                 <div class="stack"><span>SQL</span><span>Data QA</span><span>Validation</span></div>
                                 <div class="project-links">
                                     <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
-                                    <a href="#">Live Demo</a>
                                 </div>
                             </div>
                         </div>
 
                         <div class="project">
                             <div class="project-body">
-                                <strong>Playwright Automation Framework</strong>
+                                <p class="category-label">QA Artifact</p>
+                                <h3>Playwright Automation Framework</h3>
                                 <div class="sql-media">
                                     <div class="app-slider" data-slider data-caption-set="playwright">
                                         <button class="app-slider-btn prev" type="button" aria-label="Previous Playwright slide" data-dir="prev">&#8249;</button>
@@ -998,7 +1109,7 @@
                                         <button class="app-slider-btn next" type="button" aria-label="Next Playwright slide" data-dir="next">&#8250;</button>
                                     </div>
                                 </div>
-                                <p>Reusable E2E automation framework with maintainable page modeling and reporting.</p>
+                                <p class="project-desc">Reusable E2E automation framework with maintainable page modeling and reporting.</p>
                                 <div class="app-slide-caption" aria-live="polite">
                                     <h5 data-pw-caption-title>Material Delay Enforcement</h5>
                                     <p data-pw-caption-body>Verified that a logged material delay blocks the dependent trade phase from progressing, confirming scheduling guardrails stop work from starting before required materials are available.</p>
@@ -1012,22 +1123,63 @@
                         </div>
 
                         <div class="project">
-                            <div class="project-shot">Project screenshot<br>placeholder</div>
                             <div class="project-body">
-                                <strong>API Testing Suite</strong>
-                                <p>Automated API validation for endpoint responses, error handling, and regression checks.</p>
+                                <p class="category-label">QA Artifact</p>
+                                <h3>API Testing Suite</h3>
+                                <p class="project-desc">Automated API validation for endpoint responses, error handling, and regression checks.</p>
                                 <div class="stack"><span>Postman</span><span>JavaScript</span><span>REST</span></div>
                                 <div class="project-links">
                                     <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
-                                    <a href="#">Live Demo</a>
                                 </div>
                             </div>
                         </div>
+                </div>
+            </div>
+        </section>
 
+        <section class="section" id="experience">
+            <div class="container">
+                <div class="section-head">
+                    <p class="eyebrow">Experience</p>
+                    <h2>Background That Supports QA</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="when">IT</span>
+                        <h3>IT Support and Asset Coordination</h3>
+                        <p>Built a foundation in troubleshooting, documentation, organization, and process discipline while managing assets and improving day to day workflows.</p>
                     </div>
-                </article>
+                    <div class="timeline-item">
+                        <span class="when">Healthcare Software</span>
+                        <h3>Epic TDR Testing Exposure</h3>
+                        <p>Validated workflows, executed functional testing, and communicated defects, learning to evaluate software from both a user and an operational perspective.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="when">Ongoing</span>
+                        <h3>Project Based QA Practice</h3>
+                        <p>Build and test my own applications, then create QA artifacts around them including Jira boards, SQL validation, automation tests, bug reports, and release readiness documentation.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-                <article class="panel wide dino-panel" id="dino-game">
+        <section class="section section-alt">
+            <div class="container">
+                <div class="callout">
+                    <h3>AI Assisted Workflow <span class="badge">Transparency</span></h3>
+                    <p>I use AI tools to support learning, planning, debugging, and implementation. All portfolio work is reviewed, tested, validated, and documented by me so I can explain the purpose, risks, and quality decisions behind each artifact.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="side-projects">
+            <div class="container">
+                <div class="section-head">
+                    <p class="eyebrow">Side Projects</p>
+                    <h2>Just For Fun</h2>
+                    <p>A small browser game I built to experiment with canvas, game loops, and input handling.</p>
+                </div>
+                <article class="dino-panel" id="dino-game">
                     <h3>Browser Dino Clone</h3>
                     <p class="dino-note">Space/Up to jump, Down to crouch. Includes birds, cactus variants, and score flash every 100 points.</p>
                     <div class="dino-wrap">
@@ -1041,9 +1193,16 @@
                         </div>
                     </div>
                 </article>
+            </div>
+        </section>
 
-                <article class="panel">
-                    <h3>Certifications / Learning</h3>
+        <section class="section section-alt" id="learning">
+            <div class="container">
+                <div class="section-head">
+                    <p class="eyebrow">Certifications and Learning</p>
+                    <h2>Always Learning</h2>
+                </div>
+                <div class="card" style="max-width: 760px;">
                     <ul>
                         <li>CompTIA ITF+ (IT Fundamentals+)</li>
                         <li>CompTIA A+</li>
@@ -1051,24 +1210,22 @@
                         <li>Playwright Test Automation</li>
                         <li>SQL for QA and Data Validation</li>
                     </ul>
-                </article>
-
-                <article class="panel" id="contact">
-                    <h3>Contact</h3>
-                    <ul>
-                        <li><a href="mailto:weller.dallin@gmail.com">weller.dallin@gmail.com</a></li>
-                        <li><a href="https://www.linkedin.com/in/dallin-weller-a487032a7" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-                        <li><a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-                    </ul>
-                </article>
-            </div>
-
-            <div class="footer-contact">
-                <span>Email: <a href="mailto:weller.dallin@gmail.com">weller.dallin@gmail.com</a></span>
-                <span>LinkedIn: <a href="https://www.linkedin.com/in/dallin-weller-a487032a7" target="_blank" rel="noopener noreferrer">dallin weller</a></span>
-                <span>GitHub: <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">DwellerD</a></span>
+                </div>
             </div>
         </section>
+
+        <footer class="site-footer" id="contact">
+            <div class="container">
+                <p class="eyebrow">Contact</p>
+                <h2>Let's Connect</h2>
+                <p>Open to QA and software testing opportunities. Reach out and let's talk about quality.</p>
+                <div class="footer-links">
+                    <a href="mailto:weller.dallin@gmail.com">weller.dallin@gmail.com</a>
+                    <a href="https://www.linkedin.com/in/dallin-weller-a487032a7" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://github.com/DwellerD" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </div>
+            </div>
+        </footer>
     </main>
     <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
         <button type="button" class="image-lightbox-close" id="image-lightbox-close" aria-label="Close image preview">&times;</button>
